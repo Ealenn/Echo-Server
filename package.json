@@ -1,0 +1,34 @@
+{
+  "name": "echo-server",
+  "version": "1.0.0",
+  "description": "Kubernetes Echo Server",
+  "main": "./src/app.js",
+  "scripts": {
+    "start": "node ./src/app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ealenn/Echo-Server.git"
+  },
+  "keywords": [
+    "kubernetes",
+    "echo",
+    "server",
+    "tests",
+    "pods",
+    "service",
+    "kube",
+    "k8s",
+    "http",
+    "client"
+  ],
+  "author": "Rudy Marchandise",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ealenn/Echo-Server/issues"
+  },
+  "homepage": "https://github.com/Ealenn/Echo-Server#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
