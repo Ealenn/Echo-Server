@@ -15,6 +15,6 @@ jobs:
     - name: Publish to Docker Repository
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
-        name: ealenn/echo-server
+        name: ealen/echo-server
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
