@@ -1,6 +1,4 @@
-# Kubernetes Echo-Server
-
-> Read the docs : [https://ealenn.github.io/Echo-Server](https://ealenn.github.io/Echo-Server)
+# Documentation
 
 An echo server is a server that replicates the request sent by the client and sends it back.
 
@@ -10,21 +8,21 @@ Available:
   - Headers
   - Environment variables
 
-## Deploy Echo-Server with Helm
+## Install Nginx-Ingress with helm 
+```sh
+helm install stable/nginx-ingress --name nginx --namespace nginx
+```
 
-### Adding the Repository
+### a) Install Echo-Server with Kubectl
+```sh
+curl -sL https://raw.githubusercontent.com/Ealenn/Echo-Server/master/docs/examples/echo.kube.yaml | kubectl apply -f -
+```
 
-This chart repository can be added to `helm` via
+### b) Install Echo-Server with Helm
 
 ```sh
 helm repo add echo-server https://ealenn.github.io/Echo-Server
-helm repo update
-```
-
-### Deploy Echo-Server with helm
-
-```sh
-helm upgrade -i ${name} echo-server/echo-server --namespace ${namespace} --force
+helm upgrade -i echoserver echo-server/echo-server --namespace echoserver --force
 ```
 
 You can override values with [example.values.yaml](https://raw.githubusercontent.com/Ealenn/Echo-Server/master/docs/examples/echo.helm.yaml) file
@@ -46,12 +44,6 @@ ingress:
 ```sh
 curl https://raw.githubusercontent.com/Ealenn/Echo-Server/master/docs/examples/echo.helm.yaml --output ./example.values.yaml
 helm upgrade -i -f ./example.values.yaml echoserver echo-server/echo-server --namespace echoserver --force
-```
-
-### Deploy Echo-Server with Kubectl
-
-```sh
-curl -sL https://raw.githubusercontent.com/Ealenn/Echo-Server/master/docs/examples/echo.kube.yaml | kubectl apply -f -
 ```
 
 ## Docker Echo-Server ([latest](https://hub.docker.com/r/ealen/echo-server))
@@ -103,16 +95,4 @@ docker run -p 8080:80 -e PORT=80 ealen/echo-server
         "PORT": "80"
     }
 }
-```
-
----
-
-## Local development 
-
-### Push the Helm chart package
-
-```sh
-cd ./docs
-helm package ../charts/*
-helm repo index --url https://ealenn.github.io/Echo-Server .
 ```

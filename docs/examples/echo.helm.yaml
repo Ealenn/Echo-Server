@@ -1,0 +1,10 @@
+replicaCount: 5
+
+ingress:
+  enabled: true
+  hosts:
+    - host: echo.cluster.local
+      paths: 
+        - /
+  annotations:
+    kubernetes.io/ingress.class: nginx
