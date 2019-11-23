@@ -1,1 +1,14 @@
-theme: jekyll-theme-minimal
+# https://pmarsceill.github.io/just-the-docs/
+remote_theme: pmarsceill/just-the-docs
+title: Echo Server
+logo: "/assets/images/ping-pong.png"
+
+search_enabled: true
+heading_anchors: true
+
+footer_content: "Copyright &copy; 2019-2020 Rudy Marchandise."
+aux_links:
+  "Echo-Server on GitHub":
+    - "//github.com/Ealenn/Echo-Server"
+  "Echo-Server on DockerHub":
+    - "//hub.docker.com/repository/docker/ealen/echo-server"
