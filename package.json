@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/Ealenn/Echo-Server#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "nconf": "^0.10.0"
   }
 }

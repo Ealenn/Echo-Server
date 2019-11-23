@@ -1,14 +1,21 @@
-# Kubernetes Echo-Server
+# Echo-Server / Docker / Kubernetes / Helm
 
 > Read the docs : [https://ealenn.github.io/Echo-Server](https://ealenn.github.io/Echo-Server)
-
-An echo server is a server that replicates the request sent by the client and sends it back.
+> An echo server is a server that replicates the request sent by the client and sends it back.
 
 Available:
-  - GET / POST / PUT / PATCH / DELETE
-  - Request (Query, Body, IPs, Host, Urls...)
-  - Headers
-  - Environment variables
+
+- GET | POST | PUT | PATCH | DELETE
+- Request (Query, Body, IPs, Host, Urls...)
+- Headers
+- Environment variables
+
+## Configuration
+
+| Environment         | Helm                          | CLI                | Default       |
+|---------------------|-------------------------------|--------------------|---------------|
+| PORT                | service.port                  | --port             | `80`          |
+| LOGS__IGNORE__PING  | application.logs.ignore.ping  | --logs:ignore:ping | `false`       |
 
 ## Deploy Echo-Server with Helm
 
@@ -59,10 +66,6 @@ curl -sL https://raw.githubusercontent.com/Ealenn/Echo-Server/master/docs/exampl
 ```sh
 docker run -p 8080:80 -e PORT=80 ealen/echo-server
 ```
-
-| Environment variable | Default  |
-|----------------------|----------|
-| PORT                 | 3000     |
 
 ## Response 
 

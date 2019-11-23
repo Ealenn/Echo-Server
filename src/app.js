@@ -1,8 +1,11 @@
-const express = require('express')()
-const port = process.env.PORT || 3000
+const express = require('express')();
+const config = require('./nconf');
 
 function response(req) {
-    console.log(`${Date.now()} | [${req.method}] - ${req.protocol}://${req.get('host')}${req.originalUrl}`);
+    if (req.originalUrl != "/ping" || (req.originalUrl == "/ping" && !config.get('logs:ignore:ping'))) {
+        console.log(`${Date.now()} | [${req.method}] - ${req.protocol}://${req.get('host')}${req.originalUrl}`);
+    }
+
     return {
         request: {
             method: req.method,
@@ -23,4 +26,4 @@ function response(req) {
 };
 
 express.all('*', (req, res) => res.json(response(req)));
-express.listen(port, () => console.log(`Listening on port ${port}.`));
+express.listen(config.get('port'), () => console.log(`Listening on port ${config.get('port')}.`));
