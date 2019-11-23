@@ -4,3 +4,4 @@ metadata:
   name:  {{ template "echo-server.fullname" . }}
 data: 
     PORT: {{ .Values.service.port  | quote }}
+    LOGS__IGNORE__PING: {{ .Values.application.logs.ignore.ping  | quote }}

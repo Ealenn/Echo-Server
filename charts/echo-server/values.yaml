@@ -43,3 +43,8 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+application:
+  logs:
+    ignore:
+      ping: false
