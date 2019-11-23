@@ -12,10 +12,14 @@ Available:
 
 ## Configuration
 
-| Environment         | Helm                          | CLI                | Default       |
-|---------------------|-------------------------------|--------------------|---------------|
-| PORT                | service.port                  | --port             | `80`          |
-| LOGS__IGNORE__PING  | application.logs.ignore.ping  | --logs:ignore:ping | `false`       |
+| Environment         | Helm                           | CLI                   | Default       |
+|---------------------|--------------------------------|-----------------------|---------------|
+| PORT                | service.port                   | --port                | `80`          |
+| LOGS__IGNORE__PING  | application.logs.ignore.ping   | --logs:ignore:ping    | `false`       |
+| ENABLE__HOST        | application.enable.host        | --enable:host         | `true`        |
+| ENABLE__HTTP        | application.enable.http        | --enable:http         | `true`        |
+| ENABLE__REQUEST     | application.enable.request     | --enable:request      | `true`        |
+| ENABLE__ENVIRONMENT | application.enable.environment | --enable:environment  | `true`        |
 
 ## Deploy Echo-Server with Helm
 
@@ -37,6 +41,7 @@ helm upgrade -i ${name} echo-server/echo-server --namespace ${namespace} --force
 You can override values with [example.values.yaml](https://raw.githubusercontent.com/Ealenn/Echo-Server/master/docs/examples/echo.helm.yaml) file
 
 Example :
+
 ```yaml
 replicaCount: 5
 
@@ -44,7 +49,7 @@ ingress:
   enabled: true
   hosts:
     - host: echo.cluster.local
-      paths: 
+      paths:
         - /
   annotations:
     kubernetes.io/ingress.class: nginx
@@ -67,7 +72,7 @@ curl -sL https://raw.githubusercontent.com/Ealenn/Echo-Server/master/docs/exampl
 docker run -p 8080:80 -e PORT=80 ealen/echo-server
 ```
 
-## Response 
+## Response
 
 ```json
 {
@@ -110,7 +115,7 @@ docker run -p 8080:80 -e PORT=80 ealen/echo-server
 
 ---
 
-## Local development 
+## Local development
 
 ### Push the Helm chart package
 

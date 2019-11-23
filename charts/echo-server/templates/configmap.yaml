@@ -5,3 +5,7 @@ metadata:
 data: 
     PORT: {{ .Values.service.port  | quote }}
     LOGS__IGNORE__PING: {{ .Values.application.logs.ignore.ping  | quote }}
+    ENABLE__HOST: {{ .Values.application.enable.host  | quote }}
+    ENABLE__HTTP: {{ .Values.application.enable.http  | quote }}
+    ENABLE__REQUEST: {{ .Values.application.enable.request  | quote }}
+    ENABLE__ENVIRONMENT: {{ .Values.application.enable.environment  | quote }}

@@ -48,3 +48,8 @@ application:
   logs:
     ignore:
       ping: false
+  enable:
+    host: true
+    http: true
+    request: true
+    environment: true
