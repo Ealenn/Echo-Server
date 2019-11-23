@@ -1,6 +1,13 @@
-FROM node:12-alpine
+FROM mhart/alpine-node:6 as build
+WORKDIR /build
+COPY package.json .
+COPY package-lock.json .
+RUN npm install --production
+RUN rm ./package.json package-lock.json
 
-COPY . .
+FROM mhart/alpine-node:slim-6
+WORKDIR /app
+COPY --from=build ./build .
+COPY ./src .
 
-RUN npm install
-ENTRYPOINT [ "node", "./src/app" ]
+ENTRYPOINT [ "node", "app" ]

@@ -1,5 +1,4 @@
-const express = require('express')
-const app = express()
+const express = require('express')()
 const port = process.env.PORT || 3000
 
 function response(req) {
@@ -23,5 +22,5 @@ function response(req) {
     }
 };
 
-app.all('*', (req, res) => res.json(response(req)));
-app.listen(port, () => console.log(`Listening on port ${port}.`));
+express.all('*', (req, res) => res.json(response(req)));
+express.listen(port, () => console.log(`Listening on port ${port}.`));
