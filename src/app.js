@@ -2,7 +2,7 @@ const express = require('express')();
 const config = require('./nconf');
 
 function response(req) {
-    if (req.originalUrl != "/ping" || (req.originalUrl == "/ping" && !config.get('logs:ignore:ping'))) {
+    if (req.originalUrl != "/ping" || !config.get('logs:ignore:ping')) {
         console.log(`${Date.now()} | [${req.method}] - ${req.protocol}://${req.get('host')}${req.originalUrl}`);
     }
 
