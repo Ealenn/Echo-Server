@@ -7,21 +7,25 @@ function response(req) {
     }
 
     return {
-        request: {
+        host: config.get('enable:host') ? {
+            hostname: req.hostname,
+            ip: req.ip,
+            ips: req.ips,
+        } : undefined,
+        http: config.get('enable:http') ? {
             method: req.method,
             baseUrl: req.baseUrl,
             originalUrl: req.originalUrl,
             protocol: req.protocol,
+        } : undefined,
+        request: config.get('enable:request') ? {
             params: req.params,
             query: req.query,
             cookies: req.cookies,
-            hostname: req.hostname,
-            ip: req.ip,
-            ips: req.ips,
             body: req.body,
             headers: req.headers
-        },
-        env: process.env
+        } : undefined,
+        environment: config.get('enable:environment') ? process.env : undefined
     }
 };
 

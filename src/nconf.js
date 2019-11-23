@@ -2,7 +2,9 @@ const nconf = require('nconf');
 const path = require('path');
 
 module.exports = nconf
-    .argv()
+    .argv({
+        parseValues: true
+    })
     .env({
         separator: '__',
         lowerCase: true,
