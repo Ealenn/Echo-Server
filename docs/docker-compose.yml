@@ -1,0 +1,11 @@
+version: '3'
+services:
+  jekyll:
+    image: jekyll/jekyll
+    command: "jekyll serve --watch"
+    environment:
+      - PAGES_REPO_NWO=ealenn/echo-server
+    ports:
+      - 4000:4000
+    volumes:
+      - ./:/srv/jekyll
