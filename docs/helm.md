@@ -10,17 +10,19 @@ nav_order: 5
 This chart repository can be added to `helm` via
 
 ```sh
-helm repo add echo-server https://ealenn.github.io/Echo-Server
+helm repo add ealenn https://ealenn.github.io/charts
 helm repo update
 ```
+
+[https://ealenn.github.io/helm-ui/#/chart/echo-server](https://ealenn.github.io/helm-ui/#/chart/echo-server)
 
 ## Deploy Echo-Server with helm
 
 ```sh
-helm upgrade -i ${name} echo-server/echo-server --namespace ${namespace} --force
+helm upgrade -i ${name} ealenn/echo-server --namespace ${namespace} --force
 ```
 
-> *Example: `helm upgrade -i echoserver echo-server/echo-server --namespace echoserver --force`*
+> *Example: `helm upgrade -i echoserver ealenn/echo-server --namespace echoserver --force`*
 
 You can override values with [example.values.yaml](https://raw.githubusercontent.com/Ealenn/Echo-Server/master/docs/examples/echo.helm.yaml) file
 
@@ -44,9 +46,10 @@ ingress:
         ping: true
 ```
 
-```sh
+```bash
 curl https://raw.githubusercontent.com/Ealenn/Echo-Server/master/docs/examples/echo.helm.yaml --output ./example.values.yaml
-helm upgrade -i -f ./example.values.yaml echoserver echo-server/echo-server --namespace echoserver --force
+
+helm upgrade -i -f ./example.values.yaml echoserver ealenn/echo-server --namespace echoserver --force
 ```
 
 You can use **Nginx Ingress Controller** for try Echo-Server with :

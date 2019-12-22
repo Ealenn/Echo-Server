@@ -1,6 +1,8 @@
 # Echo-Server / Docker / Kubernetes / Helm
 
-[![GitHub stars](https://img.shields.io/github/stars/Ealenn/Echo-Server?style=for-the-badge)](https://github.com/Ealenn/Echo-Server/stargazers) [![GitHub issues](https://img.shields.io/github/issues/Ealenn/Echo-Server?style=for-the-badge)](https://github.com/Ealenn/Echo-Server/issues) [![DockerHub](https://img.shields.io/docker/pulls/ealen/echo-server.svg?style=for-the-badge)](https://hub.docker.com/repository/docker/ealen/echo-server)
+[![GitHub stars](https://img.shields.io/github/stars/Ealenn/Echo-Server?style=for-the-badge)](https://github.com/Ealenn/Echo-Server/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/Ealenn/Echo-Server?style=for-the-badge)](https://github.com/Ealenn/Echo-Server/issues)
+[![DockerHub](https://img.shields.io/docker/pulls/ealen/echo-server.svg?style=for-the-badge)](https://hub.docker.com/repository/docker/ealen/echo-server)
 
 > Read the docs : [https://ealenn.github.io/Echo-Server](https://ealenn.github.io/Echo-Server)
 
@@ -17,11 +19,11 @@ Available:
 
 ## Table of contents
 
-- [Docker](/docker.html) : Use docker container
-- [Docker-Compose](/docker-compose.html) : Integration in docker-compose
-- [Kubernetes](/kubernetes.html) Deploy with `kubectl`
-- [Helm](/helm.html) Use `echo-server` helm repository and override values
-- [Global Configuration](/configuration.html) Environments variables, CLI arguments...
+- [Docker](https://ealenn.github.io/Echo-Server/docker.html) : Use docker container
+- [Docker-Compose](https://ealenn.github.io/Echo-Server/docker-compose.html) : Integration in docker-compose
+- [Kubernetes](https://ealenn.github.io/Echo-Server/kubernetes.html) Deploy with `kubectl`
+- [Helm](https://ealenn.github.io/Echo-Server/helm.html) Use `echo-server` helm repository and override values
+- [Global Configuration](https://ealenn.github.io/Echo-Server/configuration.html) Environments variables, CLI arguments...
 
 ## Configuration
 
@@ -35,14 +37,16 @@ Available:
 | ENABLE__ENVIRONMENT | application.enable.environment | --enable:environment  | `true`        |
 
 ## Docker
-More informations [Read the docs]() -- https://ealenn.github.io/Echo-Server
+
+[Read the docs](https://ealenn.github.io/Echo-Server)
 
 ```sh
 docker run -p 3000:80 ealen/echo-server
 ```
 
 ## Docker-Compose
-More informations [Read the docs]() -- https://ealenn.github.io/Echo-Server
+
+[Read the docs](https://ealenn.github.io/Echo-Server)
 
 ```yaml
 version: '3'
@@ -56,20 +60,22 @@ services:
 ```
 
 ## Kubernetes
-More informations [Read the docs]() -- https://ealenn.github.io/Echo-Server
+
+[Read the docs](https://ealenn.github.io/Echo-Server)
 
 ```sh
 curl -sL https://raw.githubusercontent.com/Ealenn/Echo-Server/master/docs/examples/echo.kube.yaml | kubectl apply -f -
 ```
 
 ## Helm
-More informations [Read the docs]() -- https://ealenn.github.io/Echo-Server
+
+[Read the docs](https://ealenn.github.io/Echo-Server) - [Chart](https://ealenn.github.io/helm-ui/#/chart/echo-server)
 
 ```sh
-helm repo add echo-server https://ealenn.github.io/Echo-Server
+helm repo add ealenn https://ealenn.github.io/charts
 helm repo update
 curl https://raw.githubusercontent.com/Ealenn/Echo-Server/master/docs/examples/echo.helm.yaml --output ./example.values.yaml
-helm upgrade -i -f ./example.values.yaml echoserver echo-server/echo-server --namespace echoserver --force
+helm upgrade -i -f ./example.values.yaml echoserver ealenn/echo-server --namespace echoserver --force
 ```
 
 ---
@@ -83,17 +89,13 @@ npm install
 node ./src/app --port 3000
 ```
 
-### Push the Helm chart package
-
-```sh
-cd ./docs
-helm package ../charts/*
-helm repo index --url https://ealenn.github.io/Echo-Server .
-```
-
 ### Run documentation server
 
 ```sh
 cd ./docs
 docker compose up
 ```
+
+### Update Helm Chart
+
+[https://github.com/Ealenn/charts/tree/master/charts/echo-server](https://github.com/Ealenn/charts/tree/master/charts/echo-server)
