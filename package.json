@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./src/webserver",
     "test": "mocha",
-    "test-with-coverage": "nyc --reporter=text mocha"
+    "test-with-coverage": "nyc --reporter lcovonly --check-coverage mocha"
   },
   "repository": {
     "type": "git",
