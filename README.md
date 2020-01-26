@@ -1,5 +1,6 @@
 # Echo-Server / Docker / Kubernetes / Helm
 
+[![Codecov](https://img.shields.io/codecov/c/github/ealenn/echo-server?style=for-the-badge)](https://codecov.io/gh/Ealenn/Echo-Server)
 [![GitHub stars](https://img.shields.io/github/stars/Ealenn/Echo-Server?style=for-the-badge)](https://github.com/Ealenn/Echo-Server/stargazers)
 [![GitHub issues](https://img.shields.io/github/issues/Ealenn/Echo-Server?style=for-the-badge)](https://github.com/Ealenn/Echo-Server/issues)
 [![DockerHub](https://img.shields.io/docker/pulls/ealen/echo-server.svg?style=for-the-badge)](https://hub.docker.com/repository/docker/ealen/echo-server)
@@ -69,7 +70,7 @@ curl -sL https://raw.githubusercontent.com/Ealenn/Echo-Server/master/docs/exampl
 
 ## Helm
 
-[Read the docs](https://ealenn.github.io/Echo-Server) - [Chart](https://ealenn.github.io/helm-ui/#/chart/echo-server)
+[Read the docs](https://ealenn.github.io/Echo-Server)
 
 ```sh
 helm repo add ealenn https://ealenn.github.io/charts
@@ -86,7 +87,9 @@ helm upgrade -i -f ./example.values.yaml echoserver ealenn/echo-server --namespa
 
 ```sh
 npm install
-node ./src/app --port 3000
+node ./src/webserver --port 3000
+# OR
+PORT=3000 npm run start
 ```
 
 ### Run documentation server
@@ -96,6 +99,16 @@ cd ./docs
 docker compose up
 ```
 
+### Run tests
+
+```sh
+npm install
+# Without code coverage
+npm run test
+# With code coverage
+npm run test-with-coverage
+```
+
 ### Update Helm Chart
 
-[https://github.com/Ealenn/charts/tree/master/charts/echo-server](https://github.com/Ealenn/charts/tree/master/charts/echo-server)
+=> [https://github.com/Ealenn/charts/tree/master/charts/echo-server](https://github.com/Ealenn/charts/tree/master/charts/echo-server)

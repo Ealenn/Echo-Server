@@ -1,0 +1,35 @@
+name: nodejs-tests
+
+on: 
+  pull_request:
+    branches: 
+      - master
+      - feature/*
+      - fix/*
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [8.x]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Install, build, and test
+      run: |
+        npm ci
+        npm run build --if-present
+        npm run test-with-coverage
+      env:
+        CI: true
+    - name: Publish
+      run: bash <(curl -s https://codecov.io/bash)
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
