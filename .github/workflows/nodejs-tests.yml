@@ -1,6 +1,11 @@
 name: nodejs-tests
 
-on: [push]
+on: 
+  pull_request:
+    branches: 
+      - master
+      - feature/*
+      - fix/*
 
 jobs:
   build:
