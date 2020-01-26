@@ -1,9 +1,10 @@
 # Echo-Server / Docker / Kubernetes / Helm
 
-[![Codecov](https://img.shields.io/codecov/c/github/ealenn/echo-server?style=for-the-badge)](https://codecov.io/gh/Ealenn/Echo-Server)
-[![GitHub stars](https://img.shields.io/github/stars/Ealenn/Echo-Server?style=for-the-badge)](https://github.com/Ealenn/Echo-Server/stargazers)
-[![GitHub issues](https://img.shields.io/github/issues/Ealenn/Echo-Server?style=for-the-badge)](https://github.com/Ealenn/Echo-Server/issues)
-[![DockerHub](https://img.shields.io/docker/pulls/ealen/echo-server.svg?style=for-the-badge)](https://hub.docker.com/repository/docker/ealen/echo-server)
+[![Codecov](https://img.shields.io/codecov/c/github/ealenn/echo-server?style=for-the-badge&logo=codecov)](https://codecov.io/gh/Ealenn/Echo-Server)
+[![GitHub stars](https://img.shields.io/github/stars/Ealenn/Echo-Server?style=for-the-badge&logo=github)](https://github.com/Ealenn/Echo-Server/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/Ealenn/Echo-Server?style=for-the-badge&logo=github)](https://github.com/Ealenn/Echo-Server/issues)
+[![DockerHub](https://img.shields.io/docker/pulls/ealen/echo-server.svg?style=for-the-badge&logo=docker)](https://hub.docker.com/repository/docker/ealen/echo-server)
+[![DockerHub](https://img.shields.io/badge/SIZE-%3C%2013%20MB-1488C6?style=for-the-badge&logo=docker)](https://hub.docker.com/repository/docker/ealen/echo-server)
 
 > Read the docs : [https://ealenn.github.io/Echo-Server](https://ealenn.github.io/Echo-Server)
 
@@ -39,15 +40,15 @@ Available:
 
 ## Docker
 
-[Read the docs](https://ealenn.github.io/Echo-Server)
+[Read the docs](https://ealenn.github.io/Echo-Server/docker.html)
 
-```sh
+```bash
 docker run -p 3000:80 ealen/echo-server
 ```
 
 ## Docker-Compose
 
-[Read the docs](https://ealenn.github.io/Echo-Server)
+[Read the docs](https://ealenn.github.io/Echo-Server/docker-compose.html)
 
 ```yaml
 version: '3'
@@ -62,21 +63,20 @@ services:
 
 ## Kubernetes
 
-[Read the docs](https://ealenn.github.io/Echo-Server)
+[Read the docs](https://ealenn.github.io/Echo-Server/kubernetes.html)
 
-```sh
+```bash
 curl -sL https://raw.githubusercontent.com/Ealenn/Echo-Server/master/docs/examples/echo.kube.yaml | kubectl apply -f -
 ```
 
 ## Helm
 
-[Read the docs](https://ealenn.github.io/Echo-Server)
+[Read the docs](https://ealenn.github.io/Echo-Server/helm.html)
 
-```sh
+```bash
 helm repo add ealenn https://ealenn.github.io/charts
 helm repo update
-curl https://raw.githubusercontent.com/Ealenn/Echo-Server/master/docs/examples/echo.helm.yaml --output ./example.values.yaml
-helm upgrade -i -f ./example.values.yaml echoserver ealenn/echo-server --namespace echoserver --force
+helm install --set ingress.enable=true --name echoserver ealenn/echo-server
 ```
 
 ---
@@ -85,7 +85,7 @@ helm upgrade -i -f ./example.values.yaml echoserver ealenn/echo-server --namespa
 
 ### Run Echo-Server
 
-```sh
+```bash
 npm install
 node ./src/webserver --port 3000
 # OR
@@ -94,14 +94,14 @@ PORT=3000 npm run start
 
 ### Run documentation server
 
-```sh
+```bash
 cd ./docs
 docker compose up
 ```
 
 ### Run tests
 
-```sh
+```bash
 npm install
 # Without code coverage
 npm run test
