@@ -1,5 +1,6 @@
 # Echo-Server / Docker / Kubernetes / Helm
 
+[![Codecov](https://img.shields.io/codecov/c/github/ealenn/echo-server?style=for-the-badge)](https://codecov.io/gh/Ealenn/Echo-Server)
 [![GitHub stars](https://img.shields.io/github/stars/Ealenn/Echo-Server?style=for-the-badge)](https://github.com/Ealenn/Echo-Server/stargazers)
 [![GitHub issues](https://img.shields.io/github/issues/Ealenn/Echo-Server?style=for-the-badge)](https://github.com/Ealenn/Echo-Server/issues)
 [![DockerHub](https://img.shields.io/docker/pulls/ealen/echo-server.svg?style=for-the-badge)](https://hub.docker.com/repository/docker/ealen/echo-server)
