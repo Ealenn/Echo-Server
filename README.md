@@ -96,6 +96,16 @@ cd ./docs
 docker compose up
 ```
 
+### Run tests
+
+```sh
+npm install
+# Without code coverage
+npm run test
+# With code coverage
+npm run test-with-coverage
+```
+
 ### Update Helm Chart
 
 [https://github.com/Ealenn/charts/tree/master/charts/echo-server](https://github.com/Ealenn/charts/tree/master/charts/echo-server)
