@@ -69,7 +69,7 @@ curl -sL https://raw.githubusercontent.com/Ealenn/Echo-Server/master/docs/exampl
 
 ## Helm
 
-[Read the docs](https://ealenn.github.io/Echo-Server) - [Chart](https://ealenn.github.io/helm-ui/#/chart/echo-server)
+[Read the docs](https://ealenn.github.io/Echo-Server)
 
 ```sh
 helm repo add ealenn https://ealenn.github.io/charts
@@ -86,7 +86,9 @@ helm upgrade -i -f ./example.values.yaml echoserver ealenn/echo-server --namespa
 
 ```sh
 npm install
-node ./src/app --port 3000
+node ./src/webserver --port 3000
+# OR
+PORT=3000 npm run start
 ```
 
 ### Run documentation server
@@ -108,4 +110,4 @@ npm run test-with-coverage
 
 ### Update Helm Chart
 
-[https://github.com/Ealenn/charts/tree/master/charts/echo-server](https://github.com/Ealenn/charts/tree/master/charts/echo-server)
+=> [https://github.com/Ealenn/charts/tree/master/charts/echo-server](https://github.com/Ealenn/charts/tree/master/charts/echo-server)

@@ -1,6 +1,9 @@
-const app = require('express')();
-const bodyParser = require('body-parser');
-const config = require('./nconf');
+const http = require('http')
+  , express = require('express')
+  , app = express()
+  , server = http.createServer(app)
+  , bodyParser = require('body-parser')
+  , config = require('./nconf');
 
 app.use(bodyParser.urlencoded({
     extended: true
@@ -24,4 +27,4 @@ function response(req) {
 };
 
 app.all('*', (req, res) => res.json(response(req)));
-module.exports = app.listen(config.get('port'), () => console.log(`Listening on port ${config.get('port')}.`));
+module.exports = server

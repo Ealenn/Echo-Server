@@ -10,4 +10,4 @@ WORKDIR /app
 COPY --from=build ./build .
 COPY ./src .
 
-ENTRYPOINT [ "node", "app" ]
+ENTRYPOINT [ "node", "webserver" ]
