@@ -1,18 +1,18 @@
 name: SonarCloud
 
-on: [push]
+on: 
+  push:
+    branches: master
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
-    - name: Configure
+    - name: SonarCloud Configure
       run: |
         PROJECT=$(echo $GITHUB_REPOSITORY | sed "s/^.*\///")
-
         cat << EOF > ./sonar-project.properties
         sonar.organization=$GITHUB_ACTOR
         sonar.projectKey=$PROJECT
