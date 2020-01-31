@@ -9,6 +9,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Configure
+      run: |
+        PROJECT=$(echo $GITHUB_REPOSITORY | sed "s/^.*\///")
+
+        cat << EOF > ./sonar-project.properties
+        sonar.organization=$GITHUB_ACTOR
+        sonar.projectKey=$PROJECT
+        sonar.sources=.
+        EOF
     - name: SonarCloud Scan
       uses: SonarSource/sonarcloud-github-action@v1.1
       env:
