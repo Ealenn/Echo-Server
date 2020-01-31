@@ -33,7 +33,7 @@ jobs:
       env:
         CI: true
     - name: SonarCloud Configure
-      if: github.ref == "master"
+      if: github.ref == master
       run: |
         PROJECT=$(echo $GITHUB_REPOSITORY | sed "s/^.*\///")
         cat << EOF > ./sonar-project.properties
@@ -44,7 +44,7 @@ jobs:
         sonar.javascript.lcov.reportPaths=./coverage/lcov.info
         EOF
     - name: SonarCloud Scan
-      if: github.ref == "master"
+      if: github.ref == master
       uses: SonarSource/sonarcloud-github-action@v1.1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
