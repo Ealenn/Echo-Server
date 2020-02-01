@@ -1,0 +1,29 @@
+const assert = require('assert');
+const request = require('supertest');
+
+describe('Custom Body with Environment', function () {
+  var server;
+  beforeEach(function () {
+    server = require('../src/app');
+  });
+  afterEach(function () {
+    server.close();
+  });
+  it('LANG', (done) => {
+    request(server)
+      .get('/')
+      .set('ECHO_ENV_BODY', 'LANG')
+      .expect(function (res) {
+        assert.equal(res.body, process.env["LANG"])
+      })
+      .expect(200, done);
+  });
+  it('LANG with Query', (done) => {
+    request(server)
+      .get('/?echo_env_body=LANG')
+      .expect(function (res) {
+        assert.equal(res.body, process.env["LANG"])
+      })
+      .expect(200, done);
+  });
+});

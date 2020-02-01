@@ -23,6 +23,7 @@ Available:
 - Request (Query, Body, IPs, Host, Urls...)
 - Headers
 - Environment variables
+- Control via Headers/Query
 
 ## Table of contents
 
@@ -33,6 +34,39 @@ Available:
 - [Kubernetes](/kubernetes.html) Deploy with `kubectl`
 - [Helm](/helm.html) Use `echo-server` helm repository and override values
 - [Global Configuration](/configuration.html) Environments variables, CLI arguments...
+
+## Default response
+
+![curl](https://ealenn.github.io/Echo-Server/assets/images/curl.png)
+
+## Custom response
+
+| Query               | Header              | Content                          | Conditions                |
+|---------------------|---------------------|----------------------------------| ------------------------- |
+| ?echo_code=         | ECHO_CODE           | HTTP code (ex `200`, `404`)      | 200 >= `CODE` <= 599      |
+| ?echo_body=         | ECHO_BODY           | Body message                     |                           |
+| ?echo_env_body=     | ECHO_ENV_BODY       | The key of environment variable  | Enable environment `true` |
+
+```bash
+➜ curl -I --header 'ECHO_CODE: 404' localhost:3000
+➜ curl localhost:3000/?echo_code=404
+
+HTTP/1.1 404 Not Found
+```
+
+```bash
+➜ curl --header 'ECHO_BODY: amazing' localhost:3000
+➜ curl localhost:3000/?echo_env_body=amazing
+
+"amazing"
+```
+
+```bash
+➜ curl --header 'ECHO_ENV_BODY: HOME' localhost:3000
+➜ curl localhost:3000/?echo_env_body=HOME
+
+"/root"
+```
 
 ---
 
