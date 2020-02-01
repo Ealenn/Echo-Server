@@ -1,4 +1,4 @@
-name: nodejs-tests
+name: NodeJS Tests
 
 on: 
   push:

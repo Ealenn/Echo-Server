@@ -5,6 +5,7 @@
   "main": "./src/app.js",
   "scripts": {
     "start": "node ./src/webserver",
+    "build": "webpack --config webpack.config.js",
     "test": "mocha",
     "test-with-coverage": "nyc --reporter lcovonly --check-coverage mocha"
   },
@@ -40,6 +41,9 @@
   "devDependencies": {
     "mocha": "^7.0.1",
     "nyc": "^15.0.0",
-    "supertest": "^4.0.2"
+    "supertest": "^4.0.2",
+    "terser-webpack-plugin": "^2.3.4",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
   }
 }
