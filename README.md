@@ -6,7 +6,7 @@
 [![DockerHub](https://img.shields.io/docker/pulls/ealen/echo-server.svg?style=for-the-badge&logo=docker)](https://hub.docker.com/repository/docker/ealen/echo-server)
 [![DockerHub](https://img.shields.io/badge/SIZE-%3C%2013%20MB-1488C6?style=for-the-badge&logo=docker)](https://hub.docker.com/repository/docker/ealen/echo-server)
 
-> Read the docs : [https://ealenn.github.io/Echo-Server](https://ealenn.github.io/Echo-Server)
+> Read the docs : [https://ealenn.github.io/Echo-Server](https://ealenn.github.io/Echo-Server) - Read the [release notes](https://github.com/Ealenn/Echo-Server/releases)
 
 An echo server is a server that replicates the request sent by the client and sends it back.
 
@@ -21,11 +21,11 @@ Available:
 
 ## Table of contents
 
-- [Docker](https://ealenn.github.io/Echo-Server/docker.html) : Use docker container
-- [Docker-Compose](https://ealenn.github.io/Echo-Server/docker-compose.html) : Integration in docker-compose
-- [Kubernetes](https://ealenn.github.io/Echo-Server/kubernetes.html) Deploy with `kubectl`
-- [Helm](https://ealenn.github.io/Echo-Server/helm.html) Use `echo-server` helm repository and override values
-- [Global Configuration](https://ealenn.github.io/Echo-Server/configuration.html) Environments variables, CLI arguments...
+- [Docker](https://ealenn.github.io/Echo-Server/pages/docker.html) : Use docker container
+- [Docker-Compose](https://ealenn.github.io/Echo-Server/pages/docker-compose.html) : Integration in docker-compose
+- [Kubernetes](https://ealenn.github.io/Echo-Server/pages/kubernetes.html) Deploy with `kubectl`
+- [Helm](https://ealenn.github.io/Echo-Server/pages/helm.html) Use `echo-server` helm repository and override values
+- [Global Configuration](https://ealenn.github.io/Echo-Server/pages/configuration.html) Environments variables, CLI arguments...
 
 ## Configuration
 
@@ -40,7 +40,7 @@ Available:
 
 ## Docker
 
-[Read the docs](https://ealenn.github.io/Echo-Server/docker.html)
+[Read the docs](https://ealenn.github.io/Echo-Server/pages/docker.html)
 
 ```bash
 docker run -p 3000:80 ealen/echo-server
@@ -48,7 +48,7 @@ docker run -p 3000:80 ealen/echo-server
 
 ## Docker-Compose
 
-[Read the docs](https://ealenn.github.io/Echo-Server/docker-compose.html)
+[Read the docs](https://ealenn.github.io/Echo-Server/pages/docker-compose.html)
 
 ```yaml
 version: '3'
@@ -63,7 +63,7 @@ services:
 
 ## Kubernetes
 
-[Read the docs](https://ealenn.github.io/Echo-Server/kubernetes.html)
+[Read the docs](https://ealenn.github.io/Echo-Server/pages/kubernetes.html)
 
 ```bash
 curl -sL https://raw.githubusercontent.com/Ealenn/Echo-Server/master/docs/examples/echo.kube.yaml | kubectl apply -f -
@@ -71,7 +71,7 @@ curl -sL https://raw.githubusercontent.com/Ealenn/Echo-Server/master/docs/exampl
 
 ## Helm
 
-[Read the docs](https://ealenn.github.io/Echo-Server/helm.html)
+[Read the docs](https://ealenn.github.io/Echo-Server/pages/helm.html) - [Helm Hub](https://hub.helm.sh/charts/ealenn/echo-server)
 
 ```bash
 helm repo add ealenn https://ealenn.github.io/charts
@@ -107,6 +107,12 @@ npm install
 npm run test
 # With code coverage
 npm run test-with-coverage
+```
+
+### Release notes
+
+```bash
+git log --pretty=oneline
 ```
 
 ### Update Helm Chart

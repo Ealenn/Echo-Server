@@ -1,3 +1,8 @@
+<!---
+exclude: true
+nav_exclude: true
+--->
+
 | Environment         | Helm                           | CLI                   | Default       |
 |---------------------|--------------------------------|-----------------------|---------------|
 | PORT                | service.port                   | --port                | `80`          |
