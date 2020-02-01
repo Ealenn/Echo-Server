@@ -40,6 +40,8 @@ Available:
 
 ## Default response
 
+I use [jq](https://stedolan.github.io/jq) for nice `curl` results ;)
+
 ![curl](https://ealenn.github.io/Echo-Server/assets/images/curl.png)
 
 ## Custom response
@@ -59,7 +61,7 @@ HTTP/1.1 404 Not Found
 
 ```bash
 ➜ curl --header 'ECHO_BODY: amazing' localhost:3000
-➜ curl localhost:3000/?echo_env_body=amazing
+➜ curl localhost:3000/?echo_body=amazing
 
 "amazing"
 ```
@@ -69,6 +71,15 @@ HTTP/1.1 404 Not Found
 ➜ curl localhost:3000/?echo_env_body=HOME
 
 "/root"
+```
+
+```bash
+# You can combine actions
+➜ curl --header 'ECHO_CODE: 401' --header 'ECHO_BODY: Oups' localhost:3000
+➜ curl "localhost:3000/?echo_body=Oups&echo_code=401"
+
+HTTP/1.1 401 Unauthorized
+"Oups"
 ```
 
 ## Docker
