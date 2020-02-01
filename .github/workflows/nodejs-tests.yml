@@ -1,4 +1,4 @@
-name: Nodejs Tests
+name: nodejs-tests
 
 on: 
   push:
@@ -32,24 +32,7 @@ jobs:
         npm run test-with-coverage
       env:
         CI: true
-    - name: SonarCloud Configure
-      if: github.ref == 'refs/heads/master'
-      run: |
-        PROJECT=$(echo $GITHUB_REPOSITORY | sed "s/^.*\///")
-        cat << EOF > ./sonar-project.properties
-        sonar.organization=$GITHUB_ACTOR
-        sonar.projectKey=$PROJECT
-        sonar.sources=./src
-        sonar.tests=./test
-        sonar.javascript.lcov.reportPaths=./coverage/lcov.info
-        EOF
-    - name: SonarCloud Scan
-      if: github.ref == 'refs/heads/master'
-      uses: SonarSource/sonarcloud-github-action@v1.1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-    - name: Code Cov Publish
+    - name: Publish
       run: bash <(curl -s https://codecov.io/bash)
       env:
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
