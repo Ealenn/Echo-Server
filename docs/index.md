@@ -15,7 +15,7 @@ nav_order: 1
 
 An echo server is a server that replicates the request sent by the client and sends it back.
 
-![docker](https://ealenn.github.io/Echo-Server/assets/images/docker.gif)
+![docker](https://ealenn.github.io/Echo-Server/assets/images/docker.png)
 
 Available:
 

@@ -17,7 +17,7 @@ Available:
 - Headers
 - Environment variables
 
-![docker cli](./docs/assets/images/docker.gif)
+![docker](./docs/assets/images/docker.png)
 
 ## Table of contents
 
@@ -25,7 +25,6 @@ Available:
 - [Docker-Compose](https://ealenn.github.io/Echo-Server/pages/docker-compose.html) : Integration in docker-compose
 - [Kubernetes](https://ealenn.github.io/Echo-Server/pages/kubernetes.html) Deploy with `kubectl`
 - [Helm](https://ealenn.github.io/Echo-Server/pages/helm.html) Use `echo-server` helm repository and override values
-- [Global Configuration](https://ealenn.github.io/Echo-Server/pages/configuration.html) Environments variables, CLI arguments...
 
 ## Configuration
 
