@@ -1,9 +1,12 @@
 ---
 layout: default
 title: Docker-Compose
+parent: Documentation
 nav_order: 3
 ---
 # Docker-Compose
+
+List of available [Docker Tags](https://hub.docker.com/r/ealen/echo-server/tags) - Read the [release notes](https://github.com/Ealenn/Echo-Server/releases)
 
 ## Compose File
 
@@ -37,10 +40,8 @@ services:
 docker-compose up -d
 ```
 
-## Tests
-
-{% include_relative pages/tests.md %}
+{% include_relative includes/section-configuration.md %}
 
 ---
 
-{% include_relative pages/configuration.md %}
+{% include_relative includes/section-tests.md %}

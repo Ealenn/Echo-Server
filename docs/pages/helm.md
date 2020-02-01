@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Helm
+parent: Documentation
 nav_order: 5
 ---
 # Deploy Echo-Server with Helm
@@ -14,7 +15,7 @@ helm repo add ealenn https://ealenn.github.io/charts
 helm repo update
 ```
 
-[https://ealenn.github.io/helm-ui/#/chart/echo-server](https://ealenn.github.io/helm-ui/#/chart/echo-server)
+More information on [Helm Hub](https://hub.helm.sh/charts/ealenn/echo-server)
 
 ## Deploy Echo-Server with helm
 
@@ -58,6 +59,8 @@ You can use **Nginx Ingress Controller** for try Echo-Server with :
 helm install stable/nginx-ingress --name nginx --namespace nginx
 ```
 
+{% include_relative includes/section-configuration.md %}
+
 ---
 
-{% include_relative pages/configuration.md %}
+{% include_relative includes/section-tests.md %}

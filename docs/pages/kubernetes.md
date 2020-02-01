@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Kubernetes
+parent: Documentation
 nav_order: 4
 ---
 # Kubernetes
@@ -85,6 +86,8 @@ spec:
               servicePort: 80
 ```
 
+{% include_relative includes/section-configuration.md %}
+
 ---
 
-{% include_relative pages/configuration.md %}
+{% include_relative includes/section-tests.md %}

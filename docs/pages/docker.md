@@ -1,13 +1,16 @@
 ---
 layout: default
 title: Docker
+parent: Documentation
 nav_order: 2
 ---
 # Docker
 
-![cli docker](./assets/images/docker.gif)
+![cli docker](../assets/images/docker.gif)
 
 ## Run Echo-Server
+
+List of available [Docker Tags](https://hub.docker.com/r/ealen/echo-server/tags) - Read the [release notes](https://github.com/Ealenn/Echo-Server/releases)
 
 ```sh
 docker run -d \
@@ -36,10 +39,8 @@ docker run -d \
     ealen/echo-server --enable:environment false
 ```
 
-## Tests
-
-{% include_relative pages/tests.md %}
+{% include_relative includes/section-configuration.md %}
 
 ---
 
-{% include_relative pages/configuration.md %}
+{% include_relative includes/section-tests.md %}

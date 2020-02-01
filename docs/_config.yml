@@ -8,7 +8,9 @@ heading_anchors: true
 
 footer_content: "Copyright &copy; 2019-2020 Rudy Marchandise."
 aux_links:
-  "Echo-Server on GitHub":
+  "GitHub":
     - "//github.com/Ealenn/Echo-Server"
-  "Echo-Server on DockerHub":
+  "DockerHub":
     - "//hub.docker.com/repository/docker/ealen/echo-server"
+  "Helm Hub":
+    - "//hub.helm.sh/charts/ealenn/echo-server"
