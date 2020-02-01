@@ -4,6 +4,9 @@ const http = require('http')
   , server = http.createServer(app)
   , bodyParser = require('body-parser');
 
+// Configuration
+app.disable('x-powered-by');
+
 // Parser
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
