@@ -16,6 +16,7 @@ app.use(require('multer')().array());
 
 // Middlewares
 app.use(require('./middlewares/logMiddleware'));
+app.use(require('./middlewares/customResponseTime'));
 app.use(require('./middlewares/customHttpCodeMiddleware'));
 app.use(require('./middlewares/customHttpEnvBodyMiddleware'));
 app.use(require('./middlewares/customHttpBodyMiddleware'));
