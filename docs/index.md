@@ -27,56 +27,11 @@ Available:
 
 ## Table of contents
 
-{: .no_toc .text-delta }
-
-- [Docker](/docker.html) : Use docker container
-- [Docker-Compose](/docker-compose.html) : Integration in docker-compose
-- [Kubernetes](/kubernetes.html) Deploy with `kubectl`
-- [Helm](/helm.html) Use `echo-server` helm repository and override values
-- [Global Configuration](/configuration.html) Environments variables, CLI arguments...
-
-## Default response
-
-![curl](https://ealenn.github.io/Echo-Server/assets/images/curl.png)
-
-## Custom response
-
-| Query               | Header              | Content                          | Conditions                |
-|---------------------|---------------------|----------------------------------| ------------------------- |
-| ?echo_code=         | ECHO_CODE           | HTTP code (ex `200`, `404`)      | 200 >= `CODE` <= 599      |
-| ?echo_body=         | ECHO_BODY           | Body message                     |                           |
-| ?echo_env_body=     | ECHO_ENV_BODY       | The key of environment variable  | Enable environment `true` |
-
-```bash
-➜ curl -I --header 'ECHO_CODE: 404' localhost:3000
-➜ curl localhost:3000/?echo_code=404
-
-HTTP/1.1 404 Not Found
-```
-
-```bash
-➜ curl --header 'ECHO_BODY: amazing' localhost:3000
-➜ curl localhost:3000/?echo_body=amazing
-
-"amazing"
-```
-
-```bash
-➜ curl --header 'ECHO_ENV_BODY: HOME' localhost:3000
-➜ curl localhost:3000/?echo_env_body=HOME
-
-"/root"
-```
-
-```bash
-# You can combine actions
-➜ curl --header 'ECHO_CODE: 401' --header 'ECHO_BODY: Oups' localhost:3000
-➜ curl "localhost:3000/?echo_body=Oups&echo_code=401"
-
-HTTP/1.1 401 Unauthorized
-"Oups"
-```
-
----
+- [Docker](/pages/docker.html) : Use docker container
+- [Docker-Compose](/pages/docker-compose.html) : Integration in docker-compose
+- [Kubernetes](/pages/kubernetes.html) Deploy with `kubectl`
+- [Helm](/pages/helm.html) Use `echo-server` helm repository and override values
 
 {% include_relative pages/includes/section-configuration.md %}
+
+{% include_relative pages/includes/section-tests.md %}

@@ -3,6 +3,8 @@ exclude: true
 nav_exclude: true
 --->
 
+## Configuration
+
 | Environment         | Helm                           | CLI                   | Default       |
 |---------------------|--------------------------------|-----------------------|---------------|
 | PORT                | service.port                   | --port                | `80`          |
