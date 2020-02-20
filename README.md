@@ -37,6 +37,7 @@ Available:
 | ENABLE__HTTP        | application.enable.http        | --enable:http         | `true`        |
 | ENABLE__REQUEST     | application.enable.request     | --enable:request      | `true`        |
 | ENABLE__ENVIRONMENT | application.enable.environment | --enable:environment  | `true`        |
+| ENABLE__FILE        | application.enable.file        | --enable:file         | `true`        |
 
 ## Use Echo-Server
 
@@ -54,6 +55,7 @@ I use [jq](https://stedolan.github.io/jq) for nice `curl` results ;)
 | ?echo_body=         | ECHO_BODY           | Body message                     |                           |
 | ?echo_env_body=     | ECHO_ENV_BODY       | The key of environment variable  | Enable environment `true` |
 | ?echo_time=         | ECHO_TIME           | Wait time in `ms`                | 0 <= `TIME` <= 30.000     |
+| ?echo_file=         | ECHO_FILE           | Path of Directory or File        | Enable file `true`       |
 
 #### Custom HTTP Status Code
 
@@ -89,6 +91,15 @@ HTTP/1.1 404 Not Found
 ➜ curl "$ECHO_HOST/?echo_time=5000"
 
 ⏳... 5000 ms
+```
+
+#### File/Folder explorer
+
+```bash
+➜ curl --header 'ECHO_FILE: /' $ECHO_HOST
+➜ curl "$ECHO_HOST/?echo_file=/"
+
+["app", "bin", "etc", "usr", "var"]
 ```
 
 #### Combine custom actions

@@ -56,6 +56,15 @@ HTTP/1.1 404 Not Found
 ⏳... 5000 ms
 ```
 
+#### File/Folder explorer
+
+```bash
+➜ curl --header 'ECHO_FILE: /' $ECHO_HOST
+➜ curl "$ECHO_HOST/?echo_file=/"
+
+["app", "bin", "etc", "usr", "var"]
+```
+
 #### Combine custom actions
 
 ```bash

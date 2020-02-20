@@ -9,6 +9,7 @@
         "host": true,
         "http": true,
         "request": true,
-        "environment": true
+        "environment": true,
+        "file": true
     }
 }
