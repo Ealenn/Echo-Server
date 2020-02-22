@@ -1,0 +1,34 @@
+const assert = require('assert');
+const request = require('supertest');
+
+describe('File', function () {
+  var server;
+  beforeEach(function () {
+    server = require('../src/app');
+  });
+  afterEach(function () {
+    server.close();
+  });
+  it('GET 404 with Query', (done) => {
+    request(server)
+      .get('/?echo_file=/not_an_directory')
+      .expect(404, done);
+  });
+  it('GET 404 with Header', (done) => {
+    request(server)
+      .get('/')
+      .set('ECHO_FILE', '/not_an_directory')
+      .expect(404, done);
+  });
+  it('GET 200 with Query', (done) => {
+    request(server)
+      .get('/?echo_file=/')
+      .expect(200, done);
+  });
+  it('GET 200 with Header', (done) => {
+    request(server)
+      .get('/')
+      .set('ECHO_FILE', '/')
+      .expect(200, done);
+  });
+});

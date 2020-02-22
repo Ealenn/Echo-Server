@@ -13,3 +13,4 @@ nav_exclude: true
 | ENABLE__HTTP        | application.enable.http        | --enable:http         | `true`        |
 | ENABLE__REQUEST     | application.enable.request     | --enable:request      | `true`        |
 | ENABLE__ENVIRONMENT | application.enable.environment | --enable:environment  | `true`        |
+| ENABLE__FILE        | application.enable.file        | --enable:file         | `true`        |
