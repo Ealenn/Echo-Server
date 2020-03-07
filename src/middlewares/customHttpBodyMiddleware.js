@@ -1,3 +1,5 @@
+const config = require('../nconf');
+
 const returnBody = (value, res) => {
   try {
     res.json(JSON.parse(value));
@@ -7,10 +9,10 @@ const returnBody = (value, res) => {
 }
 
 module.exports = (req, res, next) => {
-  if (req.headers.echo_body) {
-    returnBody(req.headers.echo_body, res);
-  } else if (req.query.echo_body) {
-    returnBody(req.query.echo_body, res);
+  if (req.headers[config.get('commands:httpBody:header')]) {
+    returnBody(req.headers[config.get('commands:httpBody:header')], res);
+  } else if (req.query[config.get('commands:httpBody:query')]) {
+    returnBody(req.query[config.get('commands:httpBody:query')], res);
   } else {
     next();
   }

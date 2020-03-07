@@ -12,7 +12,7 @@ describe('Custom Body', function () {
   it('Text with Header', (done) => {
     request(server)
       .get('/')
-      .set('ECHO_BODY', 'Example text')
+      .set('X-ECHO-BODY', 'Example text')
       .expect(function (res) {
         assert.equal(res.body, "Example text")
       })
@@ -21,7 +21,7 @@ describe('Custom Body', function () {
   it('Json with Header', (done) => {
     request(server)
       .get('/')
-      .set('ECHO_BODY', '{"example": "json"}')
+      .set('X-ECHO-BODY', '{"example": "json"}')
       .expect(function (res) {
         assert.equal(res.body.example, "json")
       })

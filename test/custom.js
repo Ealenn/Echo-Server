@@ -12,8 +12,8 @@ describe('Custom Body & Code', function () {
   it('Code and Body with Header', (done) => {
     request(server)
       .get('/')
-      .set('ECHO_BODY', 'Oups')
-      .set('ECHO_CODE', 401)
+      .set('X-ECHO-BODY', 'Oups')
+      .set('X-ECHO-CODE', 401)
       .expect(function (res) {
         assert.equal(res.body, "Oups")
       })
@@ -30,8 +30,8 @@ describe('Custom Body & Code', function () {
   it('Code and Env Body with Header', (done) => {
     request(server)
       .get('/')
-      .set('ECHO_ENV_BODY', 'HOME')
-      .set('ECHO_CODE', 401)
+      .set('X-ECHO-ENV-BODY', 'HOME')
+      .set('X-ECHO-CODE', 401)
       .expect(function (res) {
         assert.equal(res.body, process.env["HOME"])
       })

@@ -50,7 +50,7 @@ describe('Custom Body', function () {
   it('With 0.5 seconds in header', (done) => {
     request(server)
       .get('/')
-      .set('ECHO_TIME', '500')
+      .set('X-ECHO-TIME', '500')
       .expect(function (res) {
         var seconds = (new Date() - time) / 1000;
         assert.equal(seconds > 0.5, true);

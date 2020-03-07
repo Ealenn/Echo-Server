@@ -16,7 +16,7 @@ describe('Custom HTTP Code', function () {
   it("Custom 200", (done) => {
     request(server)
       .get('/')
-      .set('ECHO_CODE', 200)
+      .set('X-ECHO-CODE', 200)
       .expect(200, done);
   });
   it("Custom 200 with Query", (done) => {
@@ -27,7 +27,7 @@ describe('Custom HTTP Code', function () {
   it("Custom 201", (done) => {
     request(server)
       .get('/')
-      .set('ECHO_CODE', 201)
+      .set('X-ECHO-CODE', 201)
       .expect(201, done);
   });
   it("Custom 201 with Query", (done) => {
@@ -38,7 +38,7 @@ describe('Custom HTTP Code', function () {
   it("Custom 300", (done) => {
     request(server)
       .get('/')
-      .set('ECHO_CODE', 300)
+      .set('X-ECHO-CODE', 300)
       .expect(300, done);
   });
   it("Custom 300 with Query", (done) => {
@@ -49,7 +49,7 @@ describe('Custom HTTP Code', function () {
   it("Custom 400", (done) => {
     request(server)
       .get('/')
-      .set('ECHO_CODE', 400)
+      .set('X-ECHO-CODE', 400)
       .expect(400, done);
   });
   it("Custom 400 with Query", (done) => {
@@ -60,7 +60,7 @@ describe('Custom HTTP Code', function () {
   it("Custom 401", (done) => {
     request(server)
       .get('/')
-      .set('ECHO_CODE', 401)
+      .set('X-ECHO-CODE', 401)
       .expect(401, done);
   });
   it("Custom 401 with Query", (done) => {
@@ -71,7 +71,7 @@ describe('Custom HTTP Code', function () {
   it("Custom 404", (done) => {
     request(server)
       .get('/')
-      .set('ECHO_CODE', 404)
+      .set('X-ECHO-CODE', 404)
       .expect(404, done);
   });
   it("Custom 404 with Query", (done) => {
@@ -82,7 +82,7 @@ describe('Custom HTTP Code', function () {
   it("Custom 500", (done) => {
     request(server)
       .get('/')
-      .set('ECHO_CODE', 500)
+      .set('X-ECHO-CODE', 500)
       .expect(500, done);
   });
   it("Custom 500 with Query", (done) => {
