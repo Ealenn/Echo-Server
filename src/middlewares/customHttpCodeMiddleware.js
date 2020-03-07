@@ -1,3 +1,5 @@
+const config = require('../nconf');
+
 const setupHttpCode = (value, res) => {
   if (value &&
     value >= 200 &&
@@ -7,7 +9,7 @@ const setupHttpCode = (value, res) => {
 }
 
 module.exports = (req, res, next) => {
-  setupHttpCode(req.headers.echo_code, res);
-  setupHttpCode(req.query.echo_code, res);
+  setupHttpCode(req.headers[config.get('commands:httpCode:header')], res);
+  setupHttpCode(req.query[config.get('commands:httpCode:query')], res);
   next();
 }

@@ -12,7 +12,7 @@ describe('Custom Body with Environment', function () {
   it('LANG', (done) => {
     request(server)
       .get('/')
-      .set('ECHO_ENV_BODY', 'LANG')
+      .set('X-ECHO-ENV-BODY', 'LANG')
       .expect(function (res) {
         assert.equal(res.body, process.env["LANG"])
       })

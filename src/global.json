@@ -11,5 +11,27 @@
         "request": true,
         "environment": true,
         "file": true
+    },
+    "commands": {
+        "httpBody": {
+            "query": "echo_body",
+            "header": "x-echo-body"
+        },
+        "httpEnvBody": {
+            "query": "echo_env_body",
+            "header": "x-echo-env-body"
+        },
+        "httpCode": {
+            "query": "echo_code",
+            "header": "x-echo-code"
+        },
+        "time": {
+            "query": "echo_time",
+            "header": "x-echo-time"
+        },
+        "file": {
+            "query": "echo_file",
+            "header": "x-echo-file"
+        }
     }
 }

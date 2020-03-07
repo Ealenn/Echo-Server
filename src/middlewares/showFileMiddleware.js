@@ -20,10 +20,10 @@ const returnFile = (path, res) => {
 }
 
 module.exports = (req, res, next) => {
-  if (config.get('enable:file') && req.headers.echo_file) {
-    returnFile(req.headers.echo_file, res);
-  } else if (config.get('enable:file') && req.query.echo_file) {
-    returnFile(req.query.echo_file, res);
+  if (config.get('enable:file') && req.headers[config.get('commands:file:header')]) {
+    returnFile(req.headers[config.get('commands:file:header')], res);
+  } else if (config.get('enable:file') && req.query[config.get('commands:file:query')]) {
+    returnFile(req.query[config.get('commands:file:query')], res);
   } else {
     next();
   }

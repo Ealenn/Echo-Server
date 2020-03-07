@@ -17,7 +17,7 @@ describe('File', function () {
   it('GET 404 with Header', (done) => {
     request(server)
       .get('/')
-      .set('ECHO_FILE', '/not_an_directory')
+      .set('X-ECHO-FILE', '/not_an_directory')
       .expect(404, done);
   });
   it('GET 200 with Query', (done) => {
@@ -28,7 +28,7 @@ describe('File', function () {
   it('GET 200 with Header', (done) => {
     request(server)
       .get('/')
-      .set('ECHO_FILE', '/')
+      .set('X-ECHO-FILE', '/')
       .expect(200, done);
   });
 });
