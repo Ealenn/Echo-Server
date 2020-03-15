@@ -79,7 +79,7 @@ HTTP/1.1 300 Multiple Choices
 ```bash
 ➜ for i in {1..10}
 ➜ do
-➜    curl -I localhost:8080/?echo_code=200-400-500
+➜    curl -I $ECHO_HOST/?echo_code=200-400-500
 ➜ done
 
 HTTP/1.1 500 Internal Server Error
@@ -111,7 +111,7 @@ HTTP/1.1 500 Internal Server Error
 ```bash
 ➜ for i in {1..10}
 ➜ do
-➜    curl localhost:8080/?echo_env_body=HOSTNAME
+➜    curl $ECHO_HOST/?echo_env_body=HOSTNAME
 ➜ done
 
 "c53a9ed79fa2"
