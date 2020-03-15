@@ -23,7 +23,8 @@
         },
         "httpCode": {
             "query": "echo_code",
-            "header": "x-echo-code"
+            "header": "x-echo-code",
+            "headerResponse": true
         },
         "time": {
             "query": "echo_time",
