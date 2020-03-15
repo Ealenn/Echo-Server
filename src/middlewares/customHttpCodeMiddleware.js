@@ -18,7 +18,7 @@ const setupHttpCode = (value, res) => {
       res.status(validValues[Math.floor(Math.random() * validValues.length)]);
     }
 
-    if (config.get('commands:httpCode:showHeaderResponse')){
+    if (config.get('commands:httpCode:headerResponse')){
       res.header('X-ECHO-RANDOM-STATUS', validValues);
     }
   }
