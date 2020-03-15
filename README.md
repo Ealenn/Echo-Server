@@ -29,15 +29,16 @@ Available:
 
 ## Configuration
 
-| Environment         | Helm                           | CLI                   | Default       |
-|---------------------|--------------------------------|-----------------------|---------------|
-| PORT                | service.port                   | --port                | `80`          |
-| LOGS__IGNORE__PING  | application.logs.ignore.ping   | --logs:ignore:ping    | `false`       |
-| ENABLE__HOST        | application.enable.host        | --enable:host         | `true`        |
-| ENABLE__HTTP        | application.enable.http        | --enable:http         | `true`        |
-| ENABLE__REQUEST     | application.enable.request     | --enable:request      | `true`        |
-| ENABLE__ENVIRONMENT | application.enable.environment | --enable:environment  | `true`        |
-| ENABLE__FILE        | application.enable.file        | --enable:file         | `true`        |
+| Environment                        | Helm                             | CLI                                | Default       |
+|------------------------------------|----------------------------------|------------------------------------|---------------|
+| PORT                               | service.port                     | --port                             | `80`          |
+| LOGS__IGNORE__PING                 | application.logs.ignore.ping     | --logs:ignore:ping                 | `false`       |
+| ENABLE__HOST                       | application.enable.host          | --enable:host                      | `true`        |
+| ENABLE__HTTP                       | application.enable.http          | --enable:http                      | `true`        |
+| ENABLE__REQUEST                    | application.enable.request       | --enable:request                   | `true`        |
+| ENABLE__ENVIRONMENT                | application.enable.environment   | --enable:environment               | `true`        |
+| ENABLE__FILE                       | application.enable.file          | --enable:file                      | `true`        |
+| COMMANDS__HTTPCODE__HEADERRESPONSE | commands.httpCode.headerResponse | --commands:httpCode:headerResponse | `true`        |
 
 ## Use Echo-Server
 
@@ -51,11 +52,12 @@ I use [jq](https://stedolan.github.io/jq) for nice `curl` results ;)
 
 | Query               | Header                | Content                          | Conditions                |
 |---------------------|-----------------------|----------------------------------| ------------------------- |
-| ?echo_code=         | X-ECHO-CODE           | HTTP code (ex `200`, `404`)      | 200 <= `CODE` <= 599      |
+| ?echo_code=         | X-ECHO-CODE           | HTTP code `200`, `404`           | 200 <= `CODE` <= 599      |
+|                     |                       | `404-401` or `200-500-301`       |                           |
 | ?echo_body=         | X-ECHO-BODY           | Body message                     |                           |
 | ?echo_env_body=     | X-ECHO-ENV-BODY       | The key of environment variable  | Enable environment `true` |
 | ?echo_time=         | X-ECHO-TIME           | Wait time in `ms`                | 0 <= `TIME` <= 30.000     |
-| ?echo_file=         | X-ECHO-FILE           | Path of Directory or File        | Enable file `true`       |
+| ?echo_file=         | X-ECHO-FILE           | Path of Directory or File        | Enable file `true`        |
 
 #### Custom HTTP Status Code
 
@@ -64,6 +66,28 @@ I use [jq](https://stedolan.github.io/jq) for nice `curl` results ;)
 ➜ curl $ECHO_HOST/?echo_code=404
 
 HTTP/1.1 404 Not Found
+```
+
+```bash
+➜ curl -I --header 'X-ECHO-CODE: 404-300' $ECHO_HOST
+➜ curl $ECHO_HOST/?echo_code=404-300
+
+HTTP/1.1 404 Not Found
+HTTP/1.1 300 Multiple Choices
+```
+
+```bash
+➜ for i in {1..10}
+➜ do
+➜    curl -I localhost:8080/?echo_code=200-400-500
+➜ done
+
+HTTP/1.1 500 Internal Server Error
+HTTP/1.1 400 Bad Request
+HTTP/1.1 200 OK
+HTTP/1.1 500 Internal Server Error
+HTTP/1.1 200 OK
+HTTP/1.1 500 Internal Server Error
 ```
 
 #### Custom Body
@@ -78,10 +102,23 @@ HTTP/1.1 404 Not Found
 #### Custom Body with Environment variable value
 
 ```bash
-➜ curl --header 'X-ECHO-ENV-BODY: HOME' $ECHO_HOST
-➜ curl $ECHO_HOST/?echo_env_body=HOME
+➜ curl --header 'X-ECHO-ENV-BODY: HOSTNAME' $ECHO_HOST
+➜ curl $ECHO_HOST/?echo_env_body=HOSTNAME
 
-"/root"
+"c53a9ed79fa2"
+```
+
+```bash
+➜ for i in {1..10}
+➜ do
+➜    curl localhost:8080/?echo_env_body=HOSTNAME
+➜ done
+
+"c53a9ed79fa2"
+"f10c3af61e40"
+"c53a9ed79fa2"
+"f10c3af61e40"
+"c53a9ed79fa2"
 ```
 
 #### Custom response latency
