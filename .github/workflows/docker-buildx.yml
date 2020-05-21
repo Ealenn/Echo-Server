@@ -1,7 +1,5 @@
 name: Docker-Buildx
-on:
-  push:
-    branches: [ master, feature/cross-platform-docker-images ]
+on: [push]
 
 jobs:
   build:
