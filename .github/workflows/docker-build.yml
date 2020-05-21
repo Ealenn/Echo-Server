@@ -8,12 +8,46 @@ on:
       - fix/*
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile
+    - name: Prepare
+      id: prepare
+      run: |
+        echo ::set-output name=version::sandbox
+        echo ::set-output name=build_date::$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+        echo ::set-output name=docker_platforms::linux/amd64
+        echo ::set-output name=docker_image::ealen/echo-server
+
+    - name: Set up Docker Buildx
+      id: buildx
+      uses: crazy-max/ghaction-docker-buildx@v1
+      with:
+        buildx-version: latest
+        qemu-version: latest
+
+    - name: Environment
+      run: |
+        echo home=$HOME
+        echo git_ref=$GITHUB_REF
+        echo git_sha=$GITHUB_SHA
+        echo version=${{ steps.prepare.outputs.version }}
+        echo date=${{ steps.prepare.outputs.build_date }}
+        echo image=${{ steps.prepare.outputs.docker_image }}
+        echo platforms=${{ steps.prepare.outputs.docker_platforms }}
+        echo avail_platforms=${{ steps.buildx.outputs.platforms }}
+
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Docker Build (no push)
+      run: |
+        docker buildx bake \
+          --set ${{ github.event.repository.name }}.platform=${{ steps.prepare.outputs.docker_platforms }} \
+          --set ${{ github.event.repository.name }}.output=type=image,push=false \
+          --set ${{ github.event.repository.name }}.args.VERSION=${{ steps.prepare.outputs.version }} \
+          --set ${{ github.event.repository.name }}.args.BUILD_DATE=${{ steps.prepare.outputs.build_date }} \
+          --set ${{ github.event.repository.name }}.args.VCS_REF=${GITHUB_SHA::8} \
+          --set ${{ github.event.repository.name }}.tags="${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.version }}" \
+          --file docker-compose.yaml

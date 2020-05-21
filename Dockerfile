@@ -6,7 +6,7 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-FROM mhart/alpine-node:slim-6
+FROM --platform=$BUILDPLATFORM node:lts-alpine
 WORKDIR /app
 COPY ./src/global.json .
 COPY --from=build /build/dist/webserver.js .
