@@ -14,9 +14,10 @@ Available:
 
 - GET / POST / PUT / PATCH / DELETE
 - Request (Query, Body, IPs, Host, Urls...)
-- Headers
+- Request Headers / Response Headers
 - Environment variables
 - Control via Headers/Query
+- Folders and Files
 
 Docker OS/ARCH :
 
@@ -46,6 +47,7 @@ Docker OS/ARCH :
 | ENABLE__REQUEST                    | application.enable.request       | --enable:request                   | `true`        |
 | ENABLE__ENVIRONMENT                | application.enable.environment   | --enable:environment               | `true`        |
 | ENABLE__FILE                       | application.enable.file          | --enable:file                      | `true`        |
+| ENABLE__HEADER                     | application.enable.header        | --enable:header                    | `true`        |
 
 ## Use Echo-Server
 
@@ -126,6 +128,25 @@ HTTP/1.1 500 Internal Server Error
 "c53a9ed79fa2"
 "f10c3af61e40"
 "c53a9ed79fa2"
+```
+
+#### Custom Headers
+
+```bash
+➜ curl --header 'X-ECHO-HEADER: One:1' $ECHO_HOST
+➜ curl $ECHO_HOST/?echo_header=One:1
+
+HTTP/1.1 200 OK
+One: 1
+```
+
+```bash
+➜ curl --header 'X-ECHO-HEADER: One:1, Two:2' $ECHO_HOST
+➜ curl "$ECHO_HOST/?echo_header=One:1,%20Two:2"
+
+HTTP/1.1 200 OK
+One: 1
+Two: 2
 ```
 
 #### Custom response latency
