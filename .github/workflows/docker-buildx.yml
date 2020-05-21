@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-  release:
-    types: [published]
+    tags:
+      - '*'
 
 jobs:
   build:
@@ -15,7 +15,7 @@ jobs:
       id: prepare
       run: |
         if [[ $GITHUB_REF == refs/tags/* ]]; then
-          echo ::set-output name=version::${GITHUB_REF#refs/tags/v}
+          echo ::set-output name=version::$(echo $GITHUB_REF | cut -d / -f 3)
         elif [[ $GITHUB_REF == refs/heads/master ]]; then
           echo ::set-output name=version::latest
         elif [[ $GITHUB_REF == refs/heads/* ]]; then
