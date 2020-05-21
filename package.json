@@ -39,7 +39,7 @@
     "nconf": "^0.10.0"
   },
   "devDependencies": {
-    "mocha": "^7.0.1",
+    "mocha": "^7.1.2",
     "nyc": "^15.0.0",
     "supertest": "^4.0.2",
     "terser-webpack-plugin": "^2.3.4",
