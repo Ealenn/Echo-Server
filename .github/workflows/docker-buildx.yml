@@ -53,3 +53,27 @@ jobs:
           --set ${{ github.event.repository.name }}.args.VCS_REF=${GITHUB_SHA::8} \
           --set ${{ github.event.repository.name }}.tags="${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.version }}" \
           --file docker-compose.yaml
+
+    - name: Docker Login
+      if: success()
+      env:
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      run: |
+        echo "${DOCKER_PASSWORD}" | docker login --username "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+    - name: Docker Buildx (push)
+      if: success()
+      run: |
+        docker buildx bake \
+          --set ${{ github.event.repository.name }}.platform=${{ steps.prepare.outputs.docker_platforms }} \
+          --set ${{ github.event.repository.name }}.output=type=image,push=true \
+          --set ${{ github.event.repository.name }}.args.VERSION=${{ steps.prepare.outputs.version }} \
+          --set ${{ github.event.repository.name }}.args.BUILD_DATE=${{ steps.prepare.outputs.build_date }} \
+          --set ${{ github.event.repository.name }}.args.VCS_REF=${GITHUB_SHA::8} \
+          --set ${{ github.event.repository.name }}.tags="${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.version }}" \
+          --file docker-compose.yaml
+
+    - name: Clear
+      if: always()
+      run: |
+        rm -f ${HOME}/.docker/config.json
