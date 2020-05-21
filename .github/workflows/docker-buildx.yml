@@ -51,4 +51,4 @@ jobs:
           --set ${{ github.event.repository.name }}.args.BUILD_DATE=${{ steps.prepare.outputs.build_date }} \
           --set ${{ github.event.repository.name }}.args.VCS_REF=${GITHUB_SHA::8} \
           --set ${{ github.event.repository.name }}.tags="${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.version }}" \
-          --file ./Dockerfile
+          --file docker-compose.yaml
