@@ -84,6 +84,25 @@ HTTP/1.1 500 Internal Server Error
 "c53a9ed79fa2"
 ```
 
+#### Custom Headers
+
+```bash
+➜ curl --header 'X-ECHO-HEADER: One:1' $ECHO_HOST
+➜ curl $ECHO_HOST/?echo_header=One:1
+
+HTTP/1.1 200 OK
+One: 1
+```
+
+```bash
+➜ curl --header 'X-ECHO-HEADER: One:1, Two:2' $ECHO_HOST
+➜ curl "$ECHO_HOST/?echo_header=One:1,%20Two:2"
+
+HTTP/1.1 200 OK
+One: 1
+Two: 2
+```
+
 #### Custom response latency
 
 ```bash

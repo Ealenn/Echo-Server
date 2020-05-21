@@ -11,7 +11,7 @@ nav_order: 1
 [![GitHub stars](https://img.shields.io/github/stars/Ealenn/Echo-Server?style=for-the-badge&logo=github)](https://github.com/Ealenn/Echo-Server/stargazers)
 [![GitHub issues](https://img.shields.io/github/issues/Ealenn/Echo-Server?style=for-the-badge&logo=github)](https://github.com/Ealenn/Echo-Server/issues)
 [![DockerHub](https://img.shields.io/docker/pulls/ealen/echo-server.svg?style=for-the-badge&logo=docker)](https://hub.docker.com/repository/docker/ealen/echo-server)
-[![DockerHub](https://img.shields.io/badge/SIZE-%3C%2013%20MB-1488C6?style=for-the-badge&logo=docker)](https://hub.docker.com/repository/docker/ealen/echo-server)
+[![DockerHub](https://img.shields.io/badge/SIZE-%3C%2030%20MB-1488C6?style=for-the-badge&logo=docker)](https://hub.docker.com/repository/docker/ealen/echo-server)
 
 An echo server is a server that replicates the request sent by the client and sends it back.
 
@@ -24,6 +24,8 @@ Available:
 - Headers
 - Environment variables
 - Control via Headers/Query
+
+Docker OS/ARCH : linux/amd64 - linux/arm/v6 - linux/arm/v7 - linux/arm64 - linux/386
 
 ## Table of contents
 

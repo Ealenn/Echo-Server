@@ -10,7 +10,8 @@
         "http": true,
         "request": true,
         "environment": true,
-        "file": true
+        "file": true,
+        "header": true
     },
     "commands": {
         "httpBody": {
@@ -25,6 +26,10 @@
             "query": "echo_code",
             "header": "x-echo-code",
             "headerResponse": true
+        },
+        "httpHeaders": {
+            "query": "echo_header",
+            "header": "x-echo-header"
         },
         "time": {
             "query": "echo_time",

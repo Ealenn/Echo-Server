@@ -14,4 +14,4 @@ nav_exclude: true
 | ENABLE__REQUEST                    | application.enable.request       | --enable:request                   | `true`        |
 | ENABLE__ENVIRONMENT                | application.enable.environment   | --enable:environment               | `true`        |
 | ENABLE__FILE                       | application.enable.file          | --enable:file                      | `true`        |
-| COMMANDS__HTTPCODE__HEADERRESPONSE | commands.httpCode.headerResponse | --commands:httpCode:headerResponse | `true`        |
+| ENABLE__HEADER                     | application.enable.header        | --enable:header                    | `true`        |
