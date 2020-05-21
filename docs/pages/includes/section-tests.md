@@ -19,6 +19,7 @@ I use [jq](https://stedolan.github.io/jq) for nice `curl` results ;)
 |                     |                       | `404-401` or `200-500-301`       |                           |
 | ?echo_body=         | X-ECHO-BODY           | Body message                     |                           |
 | ?echo_env_body=     | X-ECHO-ENV-BODY       | The key of environment variable  | Enable environment `true` |
+| ?echo_header=       | X-ECHO-HEADER         | Response Header `Lang: en-US`    | Enable header `true`      |
 | ?echo_time=         | X-ECHO-TIME           | Wait time in `ms`                | 0 <= `TIME` <= 30.000     |
 | ?echo_file=         | X-ECHO-FILE           | Path of Directory or File        | Enable file `true`        |
 
