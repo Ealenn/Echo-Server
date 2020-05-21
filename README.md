@@ -4,7 +4,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/Ealenn/Echo-Server?style=for-the-badge&logo=github)](https://github.com/Ealenn/Echo-Server/stargazers)
 [![GitHub issues](https://img.shields.io/github/issues/Ealenn/Echo-Server?style=for-the-badge&logo=github)](https://github.com/Ealenn/Echo-Server/issues)
 [![DockerHub](https://img.shields.io/docker/pulls/ealen/echo-server.svg?style=for-the-badge&logo=docker)](https://hub.docker.com/repository/docker/ealen/echo-server)
-[![DockerHub](https://img.shields.io/badge/SIZE-%3C%2013%20MB-1488C6?style=for-the-badge&logo=docker)](https://hub.docker.com/repository/docker/ealen/echo-server)
+[![DockerHub](https://img.shields.io/badge/SIZE-%3C%2030%20MB-1488C6?style=for-the-badge&logo=docker)](https://hub.docker.com/repository/docker/ealen/echo-server)
 
 > Read the docs : [https://ealenn.github.io/Echo-Server](https://ealenn.github.io/Echo-Server) - Read the [release notes](https://github.com/Ealenn/Echo-Server/releases)
 
@@ -17,6 +17,14 @@ Available:
 - Headers
 - Environment variables
 - Control via Headers/Query
+
+Docker OS/ARCH :
+
+- linux/amd64
+- linux/arm/v6
+- linux/arm/v7
+- linux/arm64
+- linux/386
 
 ![docker](https://ealenn.github.io/Echo-Server/assets/images/docker.png)
 
@@ -38,15 +46,12 @@ Available:
 | ENABLE__REQUEST                    | application.enable.request       | --enable:request                   | `true`        |
 | ENABLE__ENVIRONMENT                | application.enable.environment   | --enable:environment               | `true`        |
 | ENABLE__FILE                       | application.enable.file          | --enable:file                      | `true`        |
-| COMMANDS__HTTPCODE__HEADERRESPONSE | commands.httpCode.headerResponse | --commands:httpCode:headerResponse | `true`        |
 
 ## Use Echo-Server
 
-- ECHO_HOST = `localhost:3000` or `echoserver.cluster.local` for Kubernetes by default.
+![curl](https://ealenn.github.io/Echo-Server/assets/images/curl.png)
 
 I use [jq](https://stedolan.github.io/jq) for nice `curl` results ;)
-
-![curl](https://ealenn.github.io/Echo-Server/assets/images/curl.png)
 
 ### Custom responses
 
@@ -60,6 +65,8 @@ I use [jq](https://stedolan.github.io/jq) for nice `curl` results ;)
 | ?echo_file=         | X-ECHO-FILE           | Path of Directory or File        | Enable file `true`        |
 
 #### Custom HTTP Status Code
+
+ECHO_HOST = `localhost:3000` or `echoserver.cluster.local` for Kubernetes by default.
 
 ```bash
 ➜ curl -I --header 'X-ECHO-CODE: 404' $ECHO_HOST
