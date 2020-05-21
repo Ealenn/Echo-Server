@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - master
-      - 'refs/tags/*'
+    tags: '*'
 
 jobs:
   build:
