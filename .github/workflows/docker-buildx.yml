@@ -1,5 +1,9 @@
 name: Docker-Buildx
-on: [push]
+on: 
+  push:
+    branches:
+      - master
+      - 'refs/tags/*'
 
 jobs:
   build:
