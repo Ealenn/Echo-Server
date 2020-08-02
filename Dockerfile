@@ -1,4 +1,4 @@
-FROM mhart/alpine-node:8 as build
+FROM --platform=$BUILDPLATFORM node:lts-alpine as build
 WORKDIR /build
 COPY package.json .
 COPY package-lock.json .
