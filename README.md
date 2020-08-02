@@ -31,10 +31,32 @@ Docker OS/ARCH :
 
 ## Table of contents
 
-- [Docker](https://ealenn.github.io/Echo-Server/pages/docker.html) : Use docker container
-- [Docker-Compose](https://ealenn.github.io/Echo-Server/pages/docker-compose.html) : Integration in docker-compose
-- [Kubernetes](https://ealenn.github.io/Echo-Server/pages/kubernetes.html) Deploy with `kubectl`
-- [Helm](https://ealenn.github.io/Echo-Server/pages/helm.html) Use `echo-server` helm repository and override values
+- [Echo-Server / Docker / Kubernetes / Helm](#echo-server--docker--kubernetes--helm)
+  - [Table of contents](#table-of-contents)
+  - [Configuration](#configuration)
+  - [Use Echo-Server](#use-echo-server)
+    - [Custom responses](#custom-responses)
+      - [Custom HTTP Status Code](#custom-http-status-code)
+      - [Custom Body](#custom-body)
+      - [Custom Body with Environment variable value](#custom-body-with-environment-variable-value)
+      - [Custom Headers](#custom-headers)
+      - [Custom response latency](#custom-response-latency)
+      - [File/Folder explorer](#filefolder-explorer)
+      - [Combine custom actions](#combine-custom-actions)
+  - [Setting up](#setting-up)
+    - [Docker](#docker)
+    - [Docker-Compose](#docker-compose)
+    - [Kubernetes](#kubernetes)
+    - [Kubernetes with Helm](#kubernetes-with-helm)
+  - [Contributing](#contributing)
+  - [Versioning](#versioning)
+  - [License](#license)
+  - [Local development](#local-development)
+    - [Run Echo-Server](#run-echo-server)
+    - [Run documentation server](#run-documentation-server)
+    - [Run tests](#run-tests)
+    - [Release notes](#release-notes)
+    - [Update Helm Chart](#update-helm-chart)
 
 ## Configuration
 
@@ -220,6 +242,21 @@ helm repo add ealenn https://ealenn.github.io/charts
 helm repo update
 helm install --set ingress.enable=true --name echoserver ealenn/echo-server
 ```
+
+---
+
+## Contributing
+
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+
+## Versioning
+
+We use [SemVer](http://semver.org/) for versioning.
+For the versions available, see the [tags on this repository](https://github.com/Ealenn/garden-assistant/tags).
+
+## License
+
+This project is licensed under the GNU Lesser General Public License - see the [LICENSE.md](LICENSE.md) file for details.
 
 ---
 
