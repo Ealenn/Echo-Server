@@ -55,7 +55,7 @@ jobs:
           docker buildx build --output "type=image,push=false" ${{ steps.prepare.outputs.buildx_args }}
       -
         name: Docker Login
-        if: success() && github.event_name != 'pull_request'
+        #if: success() && github.event_name != 'pull_request'
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
