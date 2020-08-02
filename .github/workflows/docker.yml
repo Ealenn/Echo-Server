@@ -57,6 +57,9 @@ jobs:
         name: Available platforms
         run: echo ${{ steps.buildx.outputs.platforms }}
       -
+        name: Available args
+        run: echo ${{ steps.prepare.outputs.buildx_args }}
+      -
         name: Docker Buildx (build)
         run: |
           docker buildx build --output "type=image,push=false" ${{ steps.prepare.outputs.buildx_args }}
