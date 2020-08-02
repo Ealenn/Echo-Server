@@ -17,7 +17,7 @@ jobs:
       run: |
         echo ::set-output name=version::sandbox
         echo ::set-output name=build_date::$(date -u +'%Y-%m-%dT%H:%M:%SZ')
-        echo ::set-output name=docker_platforms::linux/amd64
+        echo ::set-output name=docker_platforms::linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/386
         echo ::set-output name=docker_image::ealen/echo-server
 
     - name: Set up Docker Buildx
