@@ -18,11 +18,11 @@ docker run -d \
     ealen/echo-server
 ```
 
-You can use environments variables with `-e ENV_NAME=VALUE` or CLI arguments after image's name `ealen/echo-server --arg value`
+You can use environment variables with `-e ENV_NAME=VALUE` or CLI arguments after image's name `ealen/echo-server --arg value`
 
 ### Example
 
-- **With environments variables:**
+- **With environment variables:**
 
 ```sh
 docker run -d \

@@ -25,14 +25,14 @@ Available:
 - Environment variables
 - Control via Headers/Query
 
-Docker OS/ARCH : linux/amd64 - linux/arm/v6 - linux/arm/v7 - linux/arm64 - linux/386
+Docker OS/ARCH: linux/amd64 - linux/arm/v6 - linux/arm/v7 - linux/arm64 - linux/386
 
 ## Table of contents
 
-- [Docker](/pages/docker.html) : Use docker container
-- [Docker-Compose](/pages/docker-compose.html) : Integration in docker-compose
-- [Kubernetes](/pages/kubernetes.html) Deploy with `kubectl`
-- [Helm](/pages/helm.html) Use `echo-server` helm repository and override values
+- [Docker](/pages/docker.html): Use docker container
+- [Docker-Compose](/pages/docker-compose.html): Integration in docker-compose
+- [Kubernetes](/pages/kubernetes.html): Deploy with `kubectl`
+- [Helm](/pages/helm.html): Use `echo-server` helm repository and override values
 
 {% include_relative pages/includes/section-configuration.md %}
 
