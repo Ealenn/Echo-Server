@@ -12,19 +12,19 @@ nav_order: 4
 curl -sL https://raw.githubusercontent.com/Ealenn/Echo-Server/master/docs/examples/echo.kube.yaml | kubectl apply -f -
 ```
 
-This kube definition :
+This kube definition:
 
-- Create namespace `echoserver`
-- Create `echoserver` deployment with `5` replicas
-- Create Ingress with `kubernetes.io/ingress.class: nginx` annotation
+- Creates namespace `echoserver`
+- Creates `echoserver` deployment with `5` replicas
+- Creates Ingress with `kubernetes.io/ingress.class: nginx` annotation
 
-You can use **Nginx Ingress Controller** for try Echo-Server with :
+You can use an **Nginx Ingress Controller**:
 
 ```sh
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud-generic.yaml
 ```
 
-Or customize this deployment :
+Or customize directly this deployment:
 
 ```yaml
 apiVersion: v1

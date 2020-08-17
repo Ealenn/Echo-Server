@@ -63,7 +63,7 @@ HTTP/1.1 500 Internal Server Error
 "amazing"
 ```
 
-#### Custom Body with Environment variable value
+#### Custom Body with environment variable value
 
 ```bash
 ➜ curl --header 'X-ECHO-ENV-BODY: HOSTNAME' $ECHO_HOST

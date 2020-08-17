@@ -21,7 +21,7 @@ services:
 
 ### Example
 
-You can use environments variables
+You can use environment variables
 
 ```yaml
 version: '3'
