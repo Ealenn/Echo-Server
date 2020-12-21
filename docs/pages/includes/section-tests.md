@@ -131,3 +131,20 @@ Two: 2
 HTTP/1.1 401 Unauthorized
 "Oups"
 ```
+
+### Change default Queries/Request commands
+
+| Environment                        | CLI                                | Default            |
+|------------------------------------|------------------------------------|--------------------|
+| commands__httpBody__query          | --commands:httpBody:query          | `echo_body`        |
+| commands__httpBody__header         | --commands:httpBody:header         | `x-echo-body`      |
+| commands__httpEnvBody__query       | --commands:httpEnvBody:query       | `echo_env_body`    |
+| commands__httpEnvBody__header      | --commands:httpEnvBody:header      | `x-echo-env-body`  |
+| commands__httpCode__query          | --commands:httpCode:query          | `echo_code`        |
+| commands__httpCode__header         | --commands:httpCode:header         | `x-echo-code`      |
+| commands__httpHeaders__query       | --commands:httpHeaders:query       | `echo_header`      |
+| commands__httpHeaders__header      | --commands:httpHeaders:header      | `x-echo-header`    |
+| commands__time__query              | --commands:time:query              | `echo_time`        |
+| commands__time__header             | --commands:time:header             | `x-echo-time`      |
+| commands__file__query              | --commands:file:query              | `echo_file`        |
+| commands__file__header             | --commands:file:header             | `x-echo-file`      |

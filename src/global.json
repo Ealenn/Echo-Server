@@ -13,6 +13,12 @@
         "file": true,
         "header": true
     },
+    "controls": {
+        "times": {
+            "min": 0,
+            "max": 30000
+        }
+    },
     "commands": {
         "httpBody": {
             "query": "echo_body",

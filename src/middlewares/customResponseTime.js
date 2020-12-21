@@ -2,8 +2,8 @@ const config = require('../nconf');
 
 const timeToSleep = (value) => {
   if (value &&
-    value <= 30000 &&
-    value >= 0) {
+    value <= config.get('controls:times:max') &&
+    value >= config.get('controls:times:min')) {
       return value
   }
 }
