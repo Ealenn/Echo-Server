@@ -24,41 +24,49 @@ Docker OS/ARCH :
 - linux/amd64
 - linux/arm/v6
 - linux/arm/v7
-- linux/arm64
-- linux/386
+- linux/arm64/v8
+- linux/ppc64le
+- linux/s390x
 
 ![docker](https://ealenn.github.io/Echo-Server/assets/images/docker.png)
 
-## Table of contents
+## <a name='Tableofcontents'></a>Table of contents
 
-- [Echo-Server / Docker / Kubernetes / Helm](#echo-server--docker--kubernetes--helm)
-  - [Table of contents](#table-of-contents)
-  - [Configuration](#configuration)
-  - [Use Echo-Server](#use-echo-server)
-    - [Custom responses](#custom-responses)
-      - [Custom HTTP Status Code](#custom-http-status-code)
-      - [Custom Body](#custom-body)
-      - [Custom Body with Environment variable value](#custom-body-with-environment-variable-value)
-      - [Custom Headers](#custom-headers)
-      - [Custom response latency](#custom-response-latency)
-      - [File/Folder explorer](#filefolder-explorer)
-      - [Combine custom actions](#combine-custom-actions)
-  - [Setting up](#setting-up)
-    - [Docker](#docker)
-    - [Docker-Compose](#docker-compose)
-    - [Kubernetes](#kubernetes)
-    - [Kubernetes with Helm](#kubernetes-with-helm)
-  - [Contributing](#contributing)
-  - [Versioning](#versioning)
-  - [License](#license)
-  - [Local development](#local-development)
-    - [Run Echo-Server](#run-echo-server)
-    - [Run documentation server](#run-documentation-server)
-    - [Run tests](#run-tests)
-    - [Release notes](#release-notes)
-    - [Update Helm Chart](#update-helm-chart)
+<!-- vscode-markdown-toc -->
+* [Table of contents](#Tableofcontents)
+* [Configuration](#Configuration)
+* [Use Echo-Server](#UseEcho-Server)
+	* [Custom responses](#Customresponses)
+		* [Custom HTTP Status Code](#CustomHTTPStatusCode)
+		* [Custom Body](#CustomBody)
+		* [Custom Body with Environment variable value](#CustomBodywithEnvironmentvariablevalue)
+		* [Custom Headers](#CustomHeaders)
+		* [Custom response latency](#Customresponselatency)
+		* [File/Folder explorer](#FileFolderexplorer)
+		* [Combine custom actions](#Combinecustomactions)
+* [Change default Queries/Request commands](#ChangedefaultQueriesRequestcommands)
+* [Setting up](#Settingup)
+	* [Docker](#Docker)
+	* [Docker-Compose](#Docker-Compose)
+	* [Kubernetes](#Kubernetes)
+	* [Kubernetes with Helm](#KuberneteswithHelm)
+* [Contributing](#Contributing)
+* [Versioning](#Versioning)
+* [License](#License)
+* [Local development](#Localdevelopment)
+	* [Run Echo-Server](#RunEcho-Server)
+	* [Run documentation server](#Rundocumentationserver)
+	* [Run tests](#Runtests)
+	* [Release notes](#Releasenotes)
+	* [Update Helm Chart](#UpdateHelmChart)
 
-## Configuration
+<!-- vscode-markdown-toc-config
+	numbering=false
+	autoSave=true
+	/vscode-markdown-toc-config -->
+<!-- /vscode-markdown-toc -->
+
+## <a name='Configuration'></a>Configuration
 
 | Environment                        | Helm                             | CLI                                | Default       |
 |------------------------------------|----------------------------------|------------------------------------|---------------|
@@ -71,13 +79,13 @@ Docker OS/ARCH :
 | ENABLE__ENVIRONMENT                | application.enable.environment   | --enable:environment               | `true`        |
 | ENABLE__FILE                       | application.enable.file          | --enable:file                      | `true`        |
 
-## Use Echo-Server
+## <a name='UseEcho-Server'></a>Use Echo-Server
 
 ![curl](https://ealenn.github.io/Echo-Server/assets/images/curl.png)
 
 I use [jq](https://stedolan.github.io/jq) for nice `curl` results ;)
 
-### Custom responses
+### <a name='Customresponses'></a>Custom responses
 
 | Query               | Header                | Content                          | Conditions                |
 |---------------------|-----------------------|----------------------------------| ------------------------- |
@@ -89,7 +97,7 @@ I use [jq](https://stedolan.github.io/jq) for nice `curl` results ;)
 | ?echo_time=         | X-ECHO-TIME           | Wait time in `ms`                | 0 <= `TIME` <= 30.000     |
 | ?echo_file=         | X-ECHO-FILE           | Path of Directory or File        | Enable file `true`        |
 
-#### Custom HTTP Status Code
+#### <a name='CustomHTTPStatusCode'></a>Custom HTTP Status Code
 
 ECHO_HOST = `localhost:3000` or `echoserver.cluster.local` for Kubernetes by default.
 
@@ -122,7 +130,7 @@ HTTP/1.1 200 OK
 HTTP/1.1 500 Internal Server Error
 ```
 
-#### Custom Body
+#### <a name='CustomBody'></a>Custom Body
 
 ```bash
 ➜ curl --header 'X-ECHO-BODY: amazing' $ECHO_HOST
@@ -131,7 +139,7 @@ HTTP/1.1 500 Internal Server Error
 "amazing"
 ```
 
-#### Custom Body with Environment variable value
+#### <a name='CustomBodywithEnvironmentvariablevalue'></a>Custom Body with Environment variable value
 
 ```bash
 ➜ curl --header 'X-ECHO-ENV-BODY: HOSTNAME' $ECHO_HOST
@@ -153,7 +161,7 @@ HTTP/1.1 500 Internal Server Error
 "c53a9ed79fa2"
 ```
 
-#### Custom Headers
+#### <a name='CustomHeaders'></a>Custom Headers
 
 ```bash
 ➜ curl --header 'X-ECHO-HEADER: One:1' $ECHO_HOST
@@ -172,7 +180,7 @@ One: 1
 Two: 2
 ```
 
-#### Custom response latency
+#### <a name='Customresponselatency'></a>Custom response latency
 
 ```bash
 ➜ curl --header 'X-ECHO-TIME: 5000' $ECHO_HOST
@@ -181,7 +189,7 @@ Two: 2
 ⏳... 5000 ms
 ```
 
-#### File/Folder explorer
+#### <a name='FileFolderexplorer'></a>File/Folder explorer
 
 ```bash
 ➜ curl --header 'X-ECHO-FILE: /' $ECHO_HOST
@@ -190,7 +198,7 @@ Two: 2
 ["app", "bin", "etc", "usr", "var"]
 ```
 
-#### Combine custom actions
+#### <a name='Combinecustomactions'></a>Combine custom actions
 
 ```bash
 ➜ curl --header 'X-ECHO-CODE: 401' --header 'X-ECHO-BODY: Oups' $ECHO_HOST
@@ -200,9 +208,26 @@ HTTP/1.1 401 Unauthorized
 "Oups"
 ```
 
-## Setting up
+## <a name='ChangedefaultQueriesRequestcommands'></a>Change default Queries/Request commands
 
-### Docker
+| Environment                        | CLI                                | Default            |
+|------------------------------------|------------------------------------|--------------------|
+| COMMANDS__HTTPBODY__QUERY          | --commands:httpBody:query          | `echo_body`        |
+| COMMANDS__HTTPBODY__HEADER         | --commands:httpBody:header         | `x-echo-body`      |
+| COMMANDS__HTTPENVBODY__QUERY       | --commands:httpEnvBody:query       | `echo_env_body`    |
+| COMMANDS__HTTPENVBODY__HEADER      | --commands:httpEnvBody:header      | `x-echo-env-body`  |
+| COMMANDS__HTTPCODE__QUERY          | --commands:httpCode:query          | `echo_code`        |
+| COMMANDS__HTTPCODE__HEADER         | --commands:httpCode:header         | `x-echo-code`      |
+| COMMANDS__HTTPHEADERS__QUERY       | --commands:httpHeaders:query       | `echo_header`      |
+| COMMANDS__HTTPHEADERS__HEADER      | --commands:httpHeaders:header      | `x-echo-header`    |
+| COMMANDS__TIME__QUERY              | --commands:time:query              | `echo_time`        |
+| COMMANDS__TIME__HEADER             | --commands:time:header             | `x-echo-time`      |
+| COMMANDS__FILE__QUERY              | --commands:file:query              | `echo_file`        |
+| COMMANDS__FILE__HEADER             | --commands:file:header             | `x-echo-file`      |
+
+## <a name='Settingup'></a>Setting up
+
+### <a name='Docker'></a>Docker
 
 [Read the docs](https://ealenn.github.io/Echo-Server/pages/docker.html)
 
@@ -210,7 +235,7 @@ HTTP/1.1 401 Unauthorized
 docker run -p 3000:80 ealen/echo-server
 ```
 
-### Docker-Compose
+### <a name='Docker-Compose'></a>Docker-Compose
 
 [Read the docs](https://ealenn.github.io/Echo-Server/pages/docker-compose.html)
 
@@ -225,7 +250,7 @@ services:
       - 3000:80
 ```
 
-### Kubernetes
+### <a name='Kubernetes'></a>Kubernetes
 
 [Read the docs](https://ealenn.github.io/Echo-Server/pages/kubernetes.html)
 
@@ -233,7 +258,7 @@ services:
 curl -sL https://raw.githubusercontent.com/Ealenn/Echo-Server/master/docs/examples/echo.kube.yaml | kubectl apply -f -
 ```
 
-### Kubernetes with Helm
+### <a name='KuberneteswithHelm'></a>Kubernetes with Helm
 
 [Read the docs](https://ealenn.github.io/Echo-Server/pages/helm.html) - [Helm Hub](https://hub.helm.sh/charts/ealenn/echo-server)
 
@@ -245,24 +270,24 @@ helm install --set ingress.enable=true --name echoserver ealenn/echo-server
 
 ---
 
-## Contributing
+## <a name='Contributing'></a>Contributing
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
-## Versioning
+## <a name='Versioning'></a>Versioning
 
 We use [SemVer](http://semver.org/) for versioning.
-For the versions available, see the [tags on this repository](https://github.com/Ealenn/garden-assistant/tags).
+For the versions available, see the [tags on this repository](https://github.com/Ealenn/Echo-Server/releases).
 
-## License
+## <a name='License'></a>License
 
 This project is licensed under the GNU Lesser General Public License - see the [LICENSE.md](LICENSE.md) file for details.
 
 ---
 
-## Local development
+## <a name='Localdevelopment'></a>Local development
 
-### Run Echo-Server
+### <a name='RunEcho-Server'></a>Run Echo-Server
 
 ```bash
 npm install
@@ -271,14 +296,14 @@ node ./src/webserver --port 3000
 PORT=3000 npm run start
 ```
 
-### Run documentation server
+### <a name='Rundocumentationserver'></a>Run documentation server
 
 ```bash
 cd ./docs
 docker compose up
 ```
 
-### Run tests
+### <a name='Runtests'></a>Run tests
 
 ```bash
 npm install
@@ -288,12 +313,12 @@ npm run test
 npm run test-with-coverage
 ```
 
-### Release notes
+### <a name='Releasenotes'></a>Release notes
 
 ```bash
 git log --pretty=oneline
 ```
 
-### Update Helm Chart
+### <a name='UpdateHelmChart'></a>Update Helm Chart
 
 => [https://github.com/Ealenn/charts/tree/master/charts/echo-server](https://github.com/Ealenn/charts/tree/master/charts/echo-server)

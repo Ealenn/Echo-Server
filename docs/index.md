@@ -21,11 +21,12 @@ Available:
 
 - GET / POST / PUT / PATCH / DELETE
 - Request (Query, Body, IPs, Host, Urls...)
-- Headers
+- Request Headers / Response Headers
 - Environment variables
 - Control via Headers/Query
+- Folders and Files
 
-Docker OS/ARCH: linux/amd64 - linux/arm/v6 - linux/arm/v7 - linux/arm64 - linux/386
+Docker OS/ARCH : linux/amd64 - linux/arm/v6 - linux/arm/v7 - linux/arm64/v8 - linux/ppc64le - linux/s390x
 
 ## Table of contents
 
