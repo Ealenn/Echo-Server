@@ -196,6 +196,8 @@ You can change default validations with
 | CONTROLS__TIMES__MIN       | --controls:times:min      | `0`      |
 | CONTROLS__TIMES__MAX       | --controls:times:max      | `60000`  |
 
+*(Latency is defined in milliseconds)*
+
 #### <a name='FileFolderexplorer'></a>File/Folder explorer
 
 ```bash
