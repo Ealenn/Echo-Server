@@ -29,31 +29,41 @@ describe('Custom Body', function () {
       })
       .expect(200, done);
   });
-  it('With 50.000ms', (done) => {
+  it('With 1 second in query', (done) => {
     request(server)
-      .get('/?echo_time=50000')
+      .get('/?echo_time=1000')
       .expect(function (res) {
         var seconds = (new Date() - time) / 1000;
-        assert.equal(seconds < 0.5, true);
+        assert.equal(seconds >= 1, true);
       })
       .expect(200, done);
   });
-  it('With 0.5 seconds in query', (done) => {
+  it('With 500ms second in query', (done) => {
     request(server)
       .get('/?echo_time=500')
       .expect(function (res) {
         var seconds = (new Date() - time) / 1000;
-        assert.equal(seconds > 0.5, true);
+        assert.equal(seconds >= 0.5, true);
       })
       .expect(200, done);
   });
-  it('With 0.5 seconds in header', (done) => {
+  it('With 1 second in header', (done) => {
+    request(server)
+      .get('/')
+      .set('X-ECHO-TIME', '1000')
+      .expect(function (res) {
+        var seconds = (new Date() - time) / 1000;
+        assert.equal(seconds >= 1, true);
+      })
+      .expect(200, done);
+  });
+  it('With 500ms second in header', (done) => {
     request(server)
       .get('/')
       .set('X-ECHO-TIME', '500')
       .expect(function (res) {
         var seconds = (new Date() - time) / 1000;
-        assert.equal(seconds > 0.5, true);
+        assert.equal(seconds >= 0.5, true);
       })
       .expect(200, done);
   });

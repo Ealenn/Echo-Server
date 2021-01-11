@@ -113,6 +113,15 @@ Two: 2
 ⏳... 5000 ms
 ```
 
+You can change default validations with
+
+| ENVIRONMENT                | CLI                       | Default  |
+|----------------------------|---------------------------| ---------|
+| CONTROLS__TIMES__MIN       | --controls:times:min      | `0`      |
+| CONTROLS__TIMES__MAX       | --controls:times:max      | `60000`  |
+
+*(Latency is defined in milliseconds)*
+
 #### File/Folder explorer
 
 ```bash
@@ -136,15 +145,15 @@ HTTP/1.1 401 Unauthorized
 
 | Environment                        | CLI                                | Default            |
 |------------------------------------|------------------------------------|--------------------|
-| commands__httpBody__query          | --commands:httpBody:query          | `echo_body`        |
-| commands__httpBody__header         | --commands:httpBody:header         | `x-echo-body`      |
-| commands__httpEnvBody__query       | --commands:httpEnvBody:query       | `echo_env_body`    |
-| commands__httpEnvBody__header      | --commands:httpEnvBody:header      | `x-echo-env-body`  |
-| commands__httpCode__query          | --commands:httpCode:query          | `echo_code`        |
-| commands__httpCode__header         | --commands:httpCode:header         | `x-echo-code`      |
-| commands__httpHeaders__query       | --commands:httpHeaders:query       | `echo_header`      |
-| commands__httpHeaders__header      | --commands:httpHeaders:header      | `x-echo-header`    |
-| commands__time__query              | --commands:time:query              | `echo_time`        |
-| commands__time__header             | --commands:time:header             | `x-echo-time`      |
-| commands__file__query              | --commands:file:query              | `echo_file`        |
-| commands__file__header             | --commands:file:header             | `x-echo-file`      |
+| COMMANDS__HTTPBODY__QUERY          | --commands:httpBody:query          | `echo_body`        |
+| COMMANDS__HTTPBODY__HEADER         | --commands:httpBody:header         | `x-echo-body`      |
+| COMMANDS__HTTPENVBODY__QUERY       | --commands:httpEnvBody:query       | `echo_env_body`    |
+| COMMANDS__HTTPENVBODY__HEADER      | --commands:httpEnvBody:header      | `x-echo-env-body`  |
+| COMMANDS__HTTPCODE__QUERY          | --commands:httpCode:query          | `echo_code`        |
+| COMMANDS__HTTPCODE__HEADER         | --commands:httpCode:header         | `x-echo-code`      |
+| COMMANDS__HTTPHEADERS__QUERY       | --commands:httpHeaders:query       | `echo_header`      |
+| COMMANDS__HTTPHEADERS__HEADER      | --commands:httpHeaders:header      | `x-echo-header`    |
+| COMMANDS__TIME__QUERY              | --commands:time:query              | `echo_time`        |
+| COMMANDS__TIME__HEADER             | --commands:time:header             | `x-echo-time`      |
+| COMMANDS__FILE__QUERY              | --commands:file:query              | `echo_file`        |
+| COMMANDS__FILE__HEADER             | --commands:file:header             | `x-echo-file`      |
