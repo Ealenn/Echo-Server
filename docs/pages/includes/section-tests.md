@@ -157,3 +157,19 @@ HTTP/1.1 401 Unauthorized
 | COMMANDS__TIME__HEADER             | --commands:time:header             | `x-echo-time`      |
 | COMMANDS__FILE__QUERY              | --commands:file:query              | `echo_file`        |
 | COMMANDS__FILE__HEADER             | --commands:file:header             | `x-echo-file`      |
+
+### Loggers
+
+| Environment                        | CLI                                | Default            |
+|------------------------------------|------------------------------------|--------------------|
+| LOGS__APP                          | --logs:app                         | `echo-server`      |
+| LOGS__LEVEL                        | --logs:level                       | `debug`          |
+
+#### Seq
+
+| Environment                        | CLI                                | Default            |
+|------------------------------------|------------------------------------|--------------------|
+| LOGS__SEQ__ENABLED                 | --logs:seq:enabled                 | `false`            |
+| LOGS__SEQ__SERVER                  | --logs:seq:server                  | ` `                |
+| LOGS__SEQ__KEY                     | --logs:seq:key                     | ` `                |
+| LOGS__SEQ__LEVEL                   | --logs:seq:level                   | `info`             |

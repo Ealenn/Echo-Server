@@ -45,6 +45,8 @@ Docker OS/ARCH :
 		* [File/Folder explorer](#FileFolderexplorer)
 		* [Combine custom actions](#Combinecustomactions)
 * [Change default Queries/Request commands](#ChangedefaultQueriesRequestcommands)
+* [Loggers](#Loggers)
+	* [Seq](#Seq)
 * [Setting up](#Settingup)
 	* [Docker](#Docker)
 	* [Docker-Compose](#Docker-Compose)
@@ -234,6 +236,24 @@ HTTP/1.1 401 Unauthorized
 | COMMANDS__FILE__QUERY              | --commands:file:query              | `echo_file`        |
 | COMMANDS__FILE__HEADER             | --commands:file:header             | `x-echo-file`      |
 
+## <a name='Loggers'></a>Loggers
+
+| Environment                        | CLI                                | Default            |
+|------------------------------------|------------------------------------|--------------------|
+| LOGS__APP                          | --logs:app                         | `echo-server`      |
+| LOGS__LEVEL                        | --logs:level                       | `debug`          |
+
+### <a name='Seq'></a>Seq
+
+![seq](https://ealenn.github.io/Echo-Server/assets/images/seq.png)
+
+| Environment                        | CLI                                | Default            |
+|------------------------------------|------------------------------------|--------------------|
+| LOGS__SEQ__ENABLED                 | --logs:seq:enabled                 | `false`            |
+| LOGS__SEQ__SERVER                  | --logs:seq:server                  | ` `                |
+| LOGS__SEQ__KEY                     | --logs:seq:key                     | ` `                |
+| LOGS__SEQ__LEVEL                   | --logs:seq:level                   | `info`             |
+
 ## <a name='Settingup'></a>Setting up
 
 ### <a name='Docker'></a>Docker
@@ -257,6 +277,27 @@ services:
       - ENABLE__ENVIRONMENT=false
     ports:
       - 3000:80
+```
+
+```yaml
+version: "3"
+
+services:
+  echo:
+    image: ealen/echo-server:latest
+    environment: 
+      PORT: 80
+      LOGS__SEQ__ENABLED: "true"
+      LOGS__SEQ__SERVER: "http://seq:5341"
+    ports: 
+      - 3000:80
+
+  seq:
+    image: datalust/seq:latest
+    environment: 
+      ACCEPT_EULA: "Y"
+    ports:
+      - 3010:80
 ```
 
 ### <a name='Kubernetes'></a>Kubernetes

@@ -1,6 +1,8 @@
 const assert = require('assert');
 const request = require('supertest');
 
+process.env.LOGS__LEVEL = "error";
+
 describe('HTTP Verbs', function () {
   var server;
   beforeEach(function () {
@@ -13,10 +15,10 @@ describe('HTTP Verbs', function () {
     request(server)
       .get('/')
       .expect(function (res) {
-        assert.equal(res.body.http.method, 'GET')
-        assert.equal(res.body.http.protocol, 'http')
-        assert.equal(res.body.http.originalUrl, '/')
-        assert.equal(res.body.http.baseUrl, '')
+        assert.strictEqual(res.body.http.method, 'GET')
+        assert.strictEqual(res.body.http.protocol, 'http')
+        assert.strictEqual(res.body.http.originalUrl, '/')
+        assert.strictEqual(res.body.http.baseUrl, '')
       })
       .expect(200, done);
   });
@@ -24,10 +26,10 @@ describe('HTTP Verbs', function () {
     request(server)
       .post('/')
       .expect(function (res) {
-        assert.equal(res.body.http.method, 'POST')
-        assert.equal(res.body.http.protocol, 'http')
-        assert.equal(res.body.http.originalUrl, '/')
-        assert.equal(res.body.http.baseUrl, '')
+        assert.strictEqual(res.body.http.method, 'POST')
+        assert.strictEqual(res.body.http.protocol, 'http')
+        assert.strictEqual(res.body.http.originalUrl, '/')
+        assert.strictEqual(res.body.http.baseUrl, '')
       })
       .expect(200, done);
   });
@@ -35,10 +37,10 @@ describe('HTTP Verbs', function () {
     request(server)
       .put('/')
       .expect(function (res) {
-        assert.equal(res.body.http.method, 'PUT')
-        assert.equal(res.body.http.protocol, 'http')
-        assert.equal(res.body.http.originalUrl, '/')
-        assert.equal(res.body.http.baseUrl, '')
+        assert.strictEqual(res.body.http.method, 'PUT')
+        assert.strictEqual(res.body.http.protocol, 'http')
+        assert.strictEqual(res.body.http.originalUrl, '/')
+        assert.strictEqual(res.body.http.baseUrl, '')
       })
       .expect(200, done);
   });
@@ -46,10 +48,10 @@ describe('HTTP Verbs', function () {
     request(server)
       .patch('/')
       .expect(function (res) {
-        assert.equal(res.body.http.method, 'PATCH')
-        assert.equal(res.body.http.protocol, 'http')
-        assert.equal(res.body.http.originalUrl, '/')
-        assert.equal(res.body.http.baseUrl, '')
+        assert.strictEqual(res.body.http.method, 'PATCH')
+        assert.strictEqual(res.body.http.protocol, 'http')
+        assert.strictEqual(res.body.http.originalUrl, '/')
+        assert.strictEqual(res.body.http.baseUrl, '')
       })
       .expect(200, done);
   });
@@ -57,10 +59,10 @@ describe('HTTP Verbs', function () {
     request(server)
       .delete('/')
       .expect(function (res) {
-        assert.equal(res.body.http.method, 'DELETE')
-        assert.equal(res.body.http.protocol, 'http')
-        assert.equal(res.body.http.originalUrl, '/')
-        assert.equal(res.body.http.baseUrl, '')
+        assert.strictEqual(res.body.http.method, 'DELETE')
+        assert.strictEqual(res.body.http.protocol, 'http')
+        assert.strictEqual(res.body.http.originalUrl, '/')
+        assert.strictEqual(res.body.http.baseUrl, '')
       })
       .expect(200, done);
   });

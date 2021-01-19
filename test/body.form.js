@@ -2,6 +2,8 @@ const assert = require('assert');
 const request = require('supertest');
 const fieldText = 'test with field';
 
+process.env.LOGS__LEVEL = "error";
+
 describe('Body with FORM', function () {
   var server;
   beforeEach(function () {
@@ -15,7 +17,7 @@ describe('Body with FORM', function () {
       .get('/')
       .field('text', fieldText)
       .expect(function (res) {
-        assert.equal(res.body.request.body.text, fieldText)
+        assert.strictEqual(res.body.request.body.text, fieldText)
       })
       .expect(200, done);
   });
@@ -24,7 +26,7 @@ describe('Body with FORM', function () {
       .post('/')
       .field('text', fieldText)
       .expect(function (res) {
-        assert.equal(res.body.request.body.text, fieldText)
+        assert.strictEqual(res.body.request.body.text, fieldText)
       })
       .expect(200, done);
   });
@@ -33,7 +35,7 @@ describe('Body with FORM', function () {
       .put('/')
       .field('text', fieldText)
       .expect(function (res) {
-        assert.equal(res.body.request.body.text, fieldText)
+        assert.strictEqual(res.body.request.body.text, fieldText)
       })
       .expect(200, done);
   });
@@ -42,7 +44,7 @@ describe('Body with FORM', function () {
       .patch('/')
       .field('text', fieldText)
       .expect(function (res) {
-        assert.equal(res.body.request.body.text, fieldText)
+        assert.strictEqual(res.body.request.body.text, fieldText)
       })
       .expect(200, done);
   });
@@ -51,7 +53,7 @@ describe('Body with FORM', function () {
       .delete('/')
       .field('text', fieldText)
       .expect(function (res) {
-        assert.equal(res.body.request.body.text, fieldText)
+        assert.strictEqual(res.body.request.body.text, fieldText)
       })
       .expect(200, done);
   });

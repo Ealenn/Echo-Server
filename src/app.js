@@ -15,11 +15,13 @@ app.use(require('cookie-parser')());
 app.use(require('multer')().array());
 
 // Middlewares
-app.use(require('./middlewares/logMiddleware'));
-app.use(require('./middlewares/showFileMiddleware'));
 app.use(require('./middlewares/customResponseTime'));
 app.use(require('./middlewares/customHttpCodeMiddleware'));
 app.use(require('./middlewares/customHttpHeadersMiddleware'));
+app.use(require('./middlewares/logMiddleware'));
+
+// Change Body
+app.use(require('./middlewares/showFileMiddleware'));
 app.use(require('./middlewares/customHttpEnvBodyMiddleware'));
 app.use(require('./middlewares/customHttpBodyMiddleware'));
 

@@ -4,6 +4,8 @@ const bodyText = {
   test: "with json"
 };
 
+process.env.LOGS__LEVEL = "error";
+
 describe('Body with JSON', function () {
   var server;
   beforeEach(function () {
@@ -17,7 +19,7 @@ describe('Body with JSON', function () {
       .get('/')
       .send(bodyText)
       .expect(function (res) {
-        assert.equal(res.body.request.body.test, bodyText.test)
+        assert.strictEqual(res.body.request.body.test, bodyText.test)
       })
       .expect(200, done);
   });
@@ -26,7 +28,7 @@ describe('Body with JSON', function () {
       .post('/')
       .send(bodyText)
       .expect(function (res) {
-        assert.equal(res.body.request.body.test, bodyText.test)
+        assert.strictEqual(res.body.request.body.test, bodyText.test)
       })
       .expect(200, done);
   });
@@ -35,7 +37,7 @@ describe('Body with JSON', function () {
       .put('/')
       .send(bodyText)
       .expect(function (res) {
-        assert.equal(res.body.request.body.test, bodyText.test)
+        assert.strictEqual(res.body.request.body.test, bodyText.test)
       })
       .expect(200, done);
   });
@@ -44,7 +46,7 @@ describe('Body with JSON', function () {
       .patch('/')
       .send(bodyText)
       .expect(function (res) {
-        assert.equal(res.body.request.body.test, bodyText.test)
+        assert.strictEqual(res.body.request.body.test, bodyText.test)
       })
       .expect(200, done);
   });
@@ -53,7 +55,7 @@ describe('Body with JSON', function () {
       .delete('/')
       .send(bodyText)
       .expect(function (res) {
-        assert.equal(res.body.request.body.test, bodyText.test)
+        assert.strictEqual(res.body.request.body.test, bodyText.test)
       })
       .expect(200, done);
   });

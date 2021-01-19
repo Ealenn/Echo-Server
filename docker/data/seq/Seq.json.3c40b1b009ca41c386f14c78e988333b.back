@@ -1,0 +1,58 @@
+{
+  "cache": {
+    "systemRamTarget": null,
+    "compactLargeObjectHeap": false
+  },
+  "diagnostics": {
+    "internalLogPath": "/data/Logs",
+    "internalLoggingLevel": "Information",
+    "internalLogServerUrl": null,
+    "telemetryServerUrl": null,
+    "metricsSamplingIntervalSeconds": 300,
+    "nativeStorageMetricsSamplingIntervalMinutes": 60
+  },
+  "api": {
+    "listenUris": [
+      "http://localhost:5341"
+    ],
+    "canonicalUri": null,
+    "ingestionPort": null,
+    "corsAllowedOrigins": [],
+    "frameAllowFrom": [],
+    "assumeHttps": false,
+    "redirectHttpToHttps": false,
+    "hstsMaxAge": 31536000,
+    "hstsIncludeSubDomains": false,
+    "hardSessionExpirySeconds": null,
+    "idleSessionExpirySeconds": 172800
+  },
+  "storage": {
+    "masterKey": "iNI+E6EHt7ovaBXCdU5zM81CP9WrjmrBYbSlFkU8G3s=",
+    "masterKeyEnvironmentVariableName": null,
+    "useEnvironmentForMasterKey": false,
+    "flare": {
+      "indexerPriority": 0.0,
+      "queryParallelism": 4,
+      "diskReaderLimit": 5
+    }
+  },
+  "metastore": {
+    "lmdb": {
+      "mapSize": 128000000
+    },
+    "msSql": {
+      "connectionString": null,
+      "schema": null,
+      "msiResource": null,
+      "msiTenantId": null
+    }
+  },
+  "firstRun": {
+    "adminUsername": null,
+    "adminPasswordHash": null,
+    "requireAuthenticationForHttpIngestion": false
+  },
+  "services": {
+    "servicesBaseUri": null
+  }
+}

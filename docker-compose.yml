@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  echo:
+    build:
+      context: .
+      dockerfile: Dockerfile.local
+    environment: 
+      PORT: 80
+      LOGS__SEQ__ENABLED: "true"
+      LOGS__SEQ__SERVER: "http://seq:5341"
+    ports: 
+      - 8080:80
+    networks: 
+      - backend
+
+  seq:
+    image: datalust/seq:latest
+    environment: 
+      ACCEPT_EULA: "Y"
+    ports:
+      - 8081:80
+      - 5341:5341
+    networks: 
+      - backend
+
+networks: 
+  backend:

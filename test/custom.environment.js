@@ -1,6 +1,8 @@
 const assert = require('assert');
 const request = require('supertest');
 
+process.env.LOGS__LEVEL = "error";
+
 describe('Custom Body with Environment', function () {
   var server;
   beforeEach(function () {
@@ -14,7 +16,7 @@ describe('Custom Body with Environment', function () {
       .get('/')
       .set('X-ECHO-ENV-BODY', 'LANG')
       .expect(function (res) {
-        assert.equal(res.body, process.env["LANG"])
+        assert.strictEqual(res.body, process.env["LANG"])
       })
       .expect(200, done);
   });
@@ -22,7 +24,7 @@ describe('Custom Body with Environment', function () {
     request(server)
       .get('/?echo_env_body=LANG')
       .expect(function (res) {
-        assert.equal(res.body, process.env["LANG"])
+        assert.strictEqual(res.body, process.env["LANG"])
       })
       .expect(200, done);
   });

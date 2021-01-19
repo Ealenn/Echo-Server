@@ -34,6 +34,29 @@ services:
       - 3000:80
 ```
 
+Or use Seq and view logs
+
+```yaml
+version: "3"
+
+services:
+  echo:
+    image: ealen/echo-server:latest
+    environment: 
+      PORT: 80
+      LOGS__SEQ__ENABLED: "true"
+      LOGS__SEQ__SERVER: "http://seq:5341"
+    ports: 
+      - 3000:80
+
+  seq:
+    image: datalust/seq:latest
+    environment: 
+      ACCEPT_EULA: "Y"
+    ports:
+      - 3010:80
+```
+
 ## Run Echo Server
 
 ```sh

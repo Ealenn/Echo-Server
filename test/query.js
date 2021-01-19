@@ -1,6 +1,8 @@
 const assert = require('assert');
 const request = require('supertest');
 
+process.env.LOGS__LEVEL = "error";
+
 describe('Request with Query', function () {
   var server;
   beforeEach(function () {
@@ -13,7 +15,7 @@ describe('Request with Query', function () {
     request(server)
       .get('/?test=ok')
       .expect(function (res) {
-        assert.equal(res.body.request.query.test, 'ok')
+        assert.strictEqual(res.body.request.query.test, 'ok')
       })
       .expect(200, done);
   });
@@ -21,7 +23,7 @@ describe('Request with Query', function () {
     request(server)
       .post('/?test=ok')
       .expect(function (res) {
-        assert.equal(res.body.request.query.test, 'ok')
+        assert.strictEqual(res.body.request.query.test, 'ok')
       })
       .expect(200, done);
   });
@@ -29,7 +31,7 @@ describe('Request with Query', function () {
     request(server)
       .put('/?test=ok')
       .expect(function (res) {
-        assert.equal(res.body.request.query.test, 'ok')
+        assert.strictEqual(res.body.request.query.test, 'ok')
       })
       .expect(200, done);
   });
@@ -37,7 +39,7 @@ describe('Request with Query', function () {
     request(server)
       .patch('/?test=ok')
       .expect(function (res) {
-        assert.equal(res.body.request.query.test, 'ok')
+        assert.strictEqual(res.body.request.query.test, 'ok')
       })
       .expect(200, done);
   });
@@ -45,7 +47,7 @@ describe('Request with Query', function () {
     request(server)
       .delete('/?test=ok')
       .expect(function (res) {
-        assert.equal(res.body.request.query.test, 'ok')
+        assert.strictEqual(res.body.request.query.test, 'ok')
       })
       .expect(200, done);
   });

@@ -1,6 +1,8 @@
 const assert = require('assert');
 const request = require('supertest');
 
+process.env.LOGS__LEVEL = "error";
+
 describe('Environment', function () {
   var server;
   beforeEach(function () {
@@ -13,7 +15,7 @@ describe('Environment', function () {
     request(server)
       .get('/')
       .expect(function (res) {
-        assert.equal(res.body.environment[0], process.env[0])
+        assert.strictEqual(res.body.environment[0], process.env[0])
       })
       .expect(200, done);
   });
