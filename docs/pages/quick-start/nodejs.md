@@ -18,7 +18,7 @@ nav_order: 1
 ## Clone repository
 
 ```sh
-git clone https://github.com/Ealenn/Echo-Server.git
+➜ git clone https://github.com/Ealenn/Echo-Server.git
 ```
 
 Or download source code of latest release [here](https://github.com/Ealenn/Echo-Server/releases/latest)
@@ -26,15 +26,16 @@ Or download source code of latest release [here](https://github.com/Ealenn/Echo-
 And install dependencies 
 
 ```sh
-npm i
+➜ npm i
 ```
 
 ## Run
 
-```sh
-node ./src/webserver --port 8080
-# OR
-PORT=8080 npm run start
+```bash
+# Run with node
+➜ node ./src/webserver --port 8080
+# Run with npm script
+➜ PORT=8080 npm run start
 ```
 
 ## Configuration

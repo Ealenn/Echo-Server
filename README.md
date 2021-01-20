@@ -327,8 +327,11 @@ helm install --set ingress.enable=true --name echoserver ealenn/echo-server
 [Read the docs](https://ealenn.github.io/Echo-Server/pages/quick-start/nodejs)
 
 ```bash
+# Dependencies
+npm install
+# Run with node
 node ./src/webserver --port 8080
-# OR
+# Run with npm script
 PORT=8080 npm run start
 ```
 
