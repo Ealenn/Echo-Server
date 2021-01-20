@@ -1,6 +1,8 @@
 const assert = require('assert');
 const request = require('supertest');
 
+process.env.LOGS__LEVEL = "error";
+
 describe('Headers', function () {
   var server;
   beforeEach(function () {
@@ -14,7 +16,7 @@ describe('Headers', function () {
       .get('/')
       .set('test', 'ok')
       .expect(function (res) {
-        assert.equal(res.body.request.headers['test'], 'ok')
+        assert.strictEqual(res.body.request.headers['test'], 'ok')
       })
       .expect(200, done);
   });
@@ -23,7 +25,7 @@ describe('Headers', function () {
       .post('/')
       .set('test', 'ok')
       .expect(function (res) {
-        assert.equal(res.body.request.headers['test'], 'ok')
+        assert.strictEqual(res.body.request.headers['test'], 'ok')
       })
       .expect(200, done);
   });
@@ -32,7 +34,7 @@ describe('Headers', function () {
       .put('/')
       .set('test', 'ok')
       .expect(function (res) {
-        assert.equal(res.body.request.headers['test'], 'ok')
+        assert.strictEqual(res.body.request.headers['test'], 'ok')
       })
       .expect(200, done);
   });
@@ -41,7 +43,7 @@ describe('Headers', function () {
       .patch('/')
       .set('test', 'ok')
       .expect(function (res) {
-        assert.equal(res.body.request.headers['test'], 'ok')
+        assert.strictEqual(res.body.request.headers['test'], 'ok')
       })
       .expect(200, done);
   });
@@ -50,7 +52,7 @@ describe('Headers', function () {
       .delete('/')
       .set('test', 'ok')
       .expect(function (res) {
-        assert.equal(res.body.request.headers['test'], 'ok')
+        assert.strictEqual(res.body.request.headers['test'], 'ok')
       })
       .expect(200, done);
   });

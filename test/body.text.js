@@ -2,6 +2,8 @@ const assert = require('assert');
 const request = require('supertest');
 const bodyText = 'test with body';
 
+process.env.LOGS__LEVEL = "error";
+
 describe('Body with TEXT', function () {
   var server;
   beforeEach(function () {
@@ -17,7 +19,7 @@ describe('Body with TEXT', function () {
       .send(bodyText)
       .expect(function (res) {
         console.log(res.body.request.body)
-        assert.equal(res.body.request.body, bodyText)
+        assert.strictEqual(res.body.request.body, bodyText)
       })
       .expect(200, done);
   });
@@ -27,7 +29,7 @@ describe('Body with TEXT', function () {
       .set('Content-Type', 'text/plain')
       .send(bodyText)
       .expect(function (res) {
-        assert.equal(res.body.request.body, bodyText)
+        assert.strictEqual(res.body.request.body, bodyText)
       })
       .expect(200, done);
   });
@@ -37,7 +39,7 @@ describe('Body with TEXT', function () {
       .set('Content-Type', 'text/plain')
       .send(bodyText)
       .expect(function (res) {
-        assert.equal(res.body.request.body, bodyText)
+        assert.strictEqual(res.body.request.body, bodyText)
       })
       .expect(200, done);
   });
@@ -47,7 +49,7 @@ describe('Body with TEXT', function () {
       .set('Content-Type', 'text/plain')
       .send(bodyText)
       .expect(function (res) {
-        assert.equal(res.body.request.body, bodyText)
+        assert.strictEqual(res.body.request.body, bodyText)
       })
       .expect(200, done);
   });
@@ -57,7 +59,7 @@ describe('Body with TEXT', function () {
       .set('Content-Type', 'text/plain')
       .send(bodyText)
       .expect(function (res) {
-        assert.equal(res.body.request.body, bodyText)
+        assert.strictEqual(res.body.request.body, bodyText)
       })
       .expect(200, done);
   });

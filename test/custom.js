@@ -1,6 +1,8 @@
 const assert = require('assert');
 const request = require('supertest');
 
+process.env.LOGS__LEVEL = "error";
+
 describe('Custom Body & Code', function () {
   var server;
   beforeEach(function () {
@@ -15,7 +17,7 @@ describe('Custom Body & Code', function () {
       .set('X-ECHO-BODY', 'Oups')
       .set('X-ECHO-CODE', 401)
       .expect(function (res) {
-        assert.equal(res.body, "Oups")
+        assert.strictEqual(res.body, "Oups")
       })
       .expect(401, done);
   });
@@ -23,7 +25,7 @@ describe('Custom Body & Code', function () {
     request(server)
       .get('/?echo_body=Oups&echo_code=401')
       .expect(function (res) {
-        assert.equal(res.body, "Oups")
+        assert.strictEqual(res.body, "Oups")
       })
       .expect(401, done);
   });
@@ -33,7 +35,7 @@ describe('Custom Body & Code', function () {
       .set('X-ECHO-ENV-BODY', 'HOME')
       .set('X-ECHO-CODE', 401)
       .expect(function (res) {
-        assert.equal(res.body, process.env["HOME"])
+        assert.strictEqual(res.body, process.env["HOME"])
       })
       .expect(401, done);
   });
@@ -41,7 +43,7 @@ describe('Custom Body & Code', function () {
     request(server)
       .get('/?echo_env_body=HOME&echo_code=401')
       .expect(function (res) {
-        assert.equal(res.body, process.env["HOME"])
+        assert.strictEqual(res.body, process.env["HOME"])
       })
       .expect(401, done);
   });

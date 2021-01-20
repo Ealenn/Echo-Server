@@ -1,6 +1,8 @@
 const assert = require('assert');
 const request = require('supertest');
 
+process.env.LOGS__LEVEL = "error";
+
 describe('Custom Body', function () {
   var server;
   beforeEach(function () {
@@ -14,7 +16,7 @@ describe('Custom Body', function () {
       .get('/')
       .set('X-ECHO-BODY', 'Example text')
       .expect(function (res) {
-        assert.equal(res.body, "Example text")
+        assert.strictEqual(res.body, "Example text")
       })
       .expect(200, done);
   });
@@ -23,7 +25,7 @@ describe('Custom Body', function () {
       .get('/')
       .set('X-ECHO-BODY', '{"example": "json"}')
       .expect(function (res) {
-        assert.equal(res.body.example, "json")
+        assert.strictEqual(res.body.example, "json")
       })
       .expect(200, done);
   });
@@ -31,7 +33,7 @@ describe('Custom Body', function () {
     request(server)
       .get('/?echo_body=Example text')
       .expect(function (res) {
-        assert.equal(res.body, "Example text")
+        assert.strictEqual(res.body, "Example text")
       })
       .expect(200, done);
   });
@@ -39,7 +41,7 @@ describe('Custom Body', function () {
     request(server)
       .get('/?echo_body={"example": "json"}')
       .expect(function (res) {
-        assert.equal(res.body.example, "json")
+        assert.strictEqual(res.body.example, "json")
       })
       .expect(200, done);
   });

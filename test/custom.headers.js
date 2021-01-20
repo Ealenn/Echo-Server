@@ -1,6 +1,8 @@
 const assert = require('assert');
 const request = require('supertest');
 
+process.env.LOGS__LEVEL = "error";
+
 describe('Custom Headers', function () {
   var server;
   beforeEach(function () {
@@ -14,7 +16,7 @@ describe('Custom Headers', function () {
       .get('/')
       .set('X-ECHO-HEADER', 'Accept-Language: en-US')
       .expect(function (res) {
-        assert.equal(res.header['accept-language'], 'en-US')
+        assert.strictEqual(res.header['accept-language'], 'en-US')
       })
       .expect(200, done);
   });
@@ -23,7 +25,7 @@ describe('Custom Headers', function () {
       .get('/')
       .set('X-ECHO-HEADER', 'Host: en.echo-server.local:3000')
       .expect(function (res) {
-        assert.equal(res.header['host'], 'en.echo-server.local:3000')
+        assert.strictEqual(res.header['host'], 'en.echo-server.local:3000')
       })
       .expect(200, done);
   });
@@ -32,8 +34,8 @@ describe('Custom Headers', function () {
       .get('/')
       .set('X-ECHO-HEADER', 'One: 1, Two: 2')
       .expect(function (res) {
-        assert.equal(res.header['one'], '1')
-        assert.equal(res.header['two'], '2')
+        assert.strictEqual(res.header['one'], '1')
+        assert.strictEqual(res.header['two'], '2')
       })
       .expect(200, done);
   });
@@ -41,7 +43,7 @@ describe('Custom Headers', function () {
     request(server)
       .get('/?echo_header=Accept-Language: en-US')
       .expect(function (res) {
-        assert.equal(res.header['accept-language'], 'en-US')
+        assert.strictEqual(res.header['accept-language'], 'en-US')
       })
       .expect(200, done);
   });
@@ -49,8 +51,8 @@ describe('Custom Headers', function () {
     request(server)
       .get('/?echo_header=One:1, Two:2')
       .expect(function (res) {
-        assert.equal(res.header['one'], '1')
-        assert.equal(res.header['two'], '2')
+        assert.strictEqual(res.header['one'], '1')
+        assert.strictEqual(res.header['two'], '2')
       })
       .expect(200, done);
   });

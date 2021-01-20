@@ -3,6 +3,9 @@
 .gitignore
 docs 
 *.md
+Dockerfile
+Dockerfile.local
+docker-compose.yml
 
 # Logs
 logs

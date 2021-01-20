@@ -1,8 +1,16 @@
 {
     "port": 80,
     "logs": {
+        "app": "echo-server",
+        "level": "debug",
         "ignore": {
             "ping": false
+        },
+        "seq": {
+            "enabled": false,
+            "server": "",
+            "key": "",
+            "level": "info"
         }
     },
     "enable": {

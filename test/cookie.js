@@ -1,6 +1,8 @@
 const assert = require('assert');
 const request = require('supertest');
 
+process.env.LOGS__LEVEL = "error";
+
 describe('Request with Cookies', function () {
   var server;
   beforeEach(function () {
@@ -15,8 +17,8 @@ describe('Request with Cookies', function () {
       .set('Cookie', ['testOne=valueOne;testTwo=valueTwo'])
       .send()
       .expect(function (res) {
-        assert.equal(res.body.request.cookies.testOne, 'valueOne')
-        assert.equal(res.body.request.cookies.testTwo, 'valueTwo')
+        assert.strictEqual(res.body.request.cookies.testOne, 'valueOne')
+        assert.strictEqual(res.body.request.cookies.testTwo, 'valueTwo')
       })
       .expect(200, done);
   });
@@ -26,8 +28,8 @@ describe('Request with Cookies', function () {
       .set('Cookie', ['testOne=valueOne;testTwo=valueTwo'])
       .send()
       .expect(function (res) {
-        assert.equal(res.body.request.cookies.testOne, 'valueOne')
-        assert.equal(res.body.request.cookies.testTwo, 'valueTwo')
+        assert.strictEqual(res.body.request.cookies.testOne, 'valueOne')
+        assert.strictEqual(res.body.request.cookies.testTwo, 'valueTwo')
       })
       .expect(200, done);
   });
@@ -37,8 +39,8 @@ describe('Request with Cookies', function () {
       .set('Cookie', ['testOne=valueOne;testTwo=valueTwo'])
       .send()
       .expect(function (res) {
-        assert.equal(res.body.request.cookies.testOne, 'valueOne')
-        assert.equal(res.body.request.cookies.testTwo, 'valueTwo')
+        assert.strictEqual(res.body.request.cookies.testOne, 'valueOne')
+        assert.strictEqual(res.body.request.cookies.testTwo, 'valueTwo')
       })
       .expect(200, done);
   });
@@ -48,8 +50,8 @@ describe('Request with Cookies', function () {
       .set('Cookie', ['testOne=valueOne;testTwo=valueTwo'])
       .send()
       .expect(function (res) {
-        assert.equal(res.body.request.cookies.testOne, 'valueOne')
-        assert.equal(res.body.request.cookies.testTwo, 'valueTwo')
+        assert.strictEqual(res.body.request.cookies.testOne, 'valueOne')
+        assert.strictEqual(res.body.request.cookies.testTwo, 'valueTwo')
       })
       .expect(200, done);
   });
@@ -59,8 +61,8 @@ describe('Request with Cookies', function () {
       .set('Cookie', ['testOne=valueOne;testTwo=valueTwo'])
       .send()
       .expect(function (res) {
-        assert.equal(res.body.request.cookies.testOne, 'valueOne')
-        assert.equal(res.body.request.cookies.testTwo, 'valueTwo')
+        assert.strictEqual(res.body.request.cookies.testOne, 'valueOne')
+        assert.strictEqual(res.body.request.cookies.testTwo, 'valueTwo')
       })
       .expect(200, done);
   });
