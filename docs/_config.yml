@@ -23,5 +23,5 @@ aux_links:
     - "//hub.helm.sh/charts/ealenn/echo-server"
 
 plugins:
-  - "jekyll-github-metadata"
+  - jekyll-github-metadata
   - jekyll-toc

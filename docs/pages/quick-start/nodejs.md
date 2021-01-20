@@ -23,7 +23,7 @@ git clone https://github.com/Ealenn/Echo-Server.git
 
 Or download source code of latest release [here](https://github.com/Ealenn/Echo-Server/releases/latest)
 
-And install dependancies 
+And install dependencies 
 
 ```sh
 npm i

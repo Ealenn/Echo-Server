@@ -18,7 +18,7 @@ nav_order: 3
 ## Run
 
 ```yaml
-version: '3'
+version: "3"
 services:
   echo-server:
     image: ealen/echo-server:{{ site.github.releases[0].tag_name }}
