@@ -15,7 +15,7 @@ nav_order: 2
 
 ---
 
-![cli docker](../../assets/images/docker.gif)
+![cli docker](https://ealenn.github.io/Echo-Server/assets/images/docker.gif)
 
 ## Run
 
@@ -30,7 +30,7 @@ HTTP/1.1 200 OK
 
 ## Configuration
 
-You can use environment variables with `-e ENV_NAME=VALUE` or CLI arguments after image's name `ealen/echo-server:{{ site.github.releases[0].tag_name }} --arg value` [More information](/pages/configuration)
+You can use environment variables with `-e ENV_NAME=VALUE` or CLI arguments after image's name `ealen/echo-server:{{ site.github.releases[0].tag_name }} --arg value` [More information](https://ealenn.github.io/Echo-Server/pages/configuration)
 
 - **With environment variables:**
 
@@ -51,7 +51,7 @@ You can use environment variables with `-e ENV_NAME=VALUE` or CLI arguments afte
 
 ## Loggers
 
-[More information](/pages/configuration/loggers)
+[More information](https://ealenn.github.io/Echo-Server/pages/configuration/loggers)
 
 ```sh
 ➜ docker run -d \

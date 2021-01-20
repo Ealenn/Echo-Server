@@ -34,7 +34,7 @@ HTTP/1.1 200 OK
 
 ## Configuration
 
-You can use environment variables [More information](/pages/configuration)
+You can use environment variables [More information](https://ealenn.github.io/Echo-Server/pages/configuration)
 
 ```yaml
 version: "3"
@@ -49,7 +49,7 @@ services:
 
 ## Loggers
 
-[More information](/pages/configuration/loggers)
+[More information](https://ealenn.github.io/Echo-Server/pages/configuration/loggers)
 
 ```yaml
 version: "3"
