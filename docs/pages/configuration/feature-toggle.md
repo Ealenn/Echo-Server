@@ -1,14 +1,16 @@
-<!---
-exclude: true
-nav_exclude: true
---->
+---
+layout: default
+title: Feature-Toggle
+parent: Configuration
+nav_order: 1
+---
 
-## Configuration
+# Feature Toggle
+
+This configuration is used to deactivate some elements in the response.
 
 | Environment                        | Helm                             | CLI                                | Default       |
 |------------------------------------|----------------------------------|------------------------------------|---------------|
-| PORT                               | service.port                     | --port                             | `80`          |
-| LOGS__IGNORE__PING                 | application.logs.ignore.ping     | --logs:ignore:ping                 | `false`       |
 | ENABLE__HOST                       | application.enable.host          | --enable:host                      | `true`        |
 | ENABLE__HTTP                       | application.enable.http          | --enable:http                      | `true`        |
 | ENABLE__REQUEST                    | application.enable.request       | --enable:request                   | `true`        |

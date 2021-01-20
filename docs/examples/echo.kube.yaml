@@ -3,13 +3,16 @@ kind: Namespace
 metadata:
   name: echoserver
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: echoserver
   namespace: echoserver
 spec:
   replicas: 5
+  selector:
+    matchLabels:
+      app: echoserver
   template:
     metadata:
       labels:
@@ -39,7 +42,7 @@ spec:
   selector:
     app: echoserver
 ---
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: echoserver
@@ -48,10 +51,12 @@ metadata:
     kubernetes.io/ingress.class: nginx
 spec:
   rules:
-    - host: echoserver.cluster.local
-      http:
-        paths:
-          - path: /echo
-            backend:
-              serviceName: echoserver
-              servicePort: 80
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: echoserver
+            port:
+              number: 80

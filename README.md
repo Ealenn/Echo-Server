@@ -1,16 +1,24 @@
 # Echo-Server / Docker / Kubernetes / Helm
 
 [![Codecov](https://img.shields.io/codecov/c/github/ealenn/echo-server?style=for-the-badge&logo=codecov)](https://codecov.io/gh/Ealenn/Echo-Server)
+[![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/ealenn/echo-server?style=for-the-badge)](https://www.codefactor.io/repository/github/ealenn/echo-server)
 [![GitHub stars](https://img.shields.io/github/stars/Ealenn/Echo-Server?style=for-the-badge&logo=github)](https://github.com/Ealenn/Echo-Server/stargazers)
 [![GitHub issues](https://img.shields.io/github/issues/Ealenn/Echo-Server?style=for-the-badge&logo=github)](https://github.com/Ealenn/Echo-Server/issues)
 [![DockerHub](https://img.shields.io/docker/pulls/ealen/echo-server.svg?style=for-the-badge&logo=docker)](https://hub.docker.com/repository/docker/ealen/echo-server)
 [![DockerHub](https://img.shields.io/badge/SIZE-%3C%2030%20MB-1488C6?style=for-the-badge&logo=docker)](https://hub.docker.com/repository/docker/ealen/echo-server)
 
-> Read the docs : [https://ealenn.github.io/Echo-Server](https://ealenn.github.io/Echo-Server) - Read the [release notes](https://github.com/Ealenn/Echo-Server/releases)
+> Read the docs : [https://ealenn.github.io/Echo-Server](https://ealenn.github.io/Echo-Server)
 
 An echo server is a server that replicates the request sent by the client and sends it back.
 
 Available:
+
+![](https://img.shields.io/badge/linux-amd64-blue?style=flat-square&logo=docker)
+![](https://img.shields.io/badge/linux-arm/v6-blue?style=flat-square&logo=docker)
+![](https://img.shields.io/badge/linux-arm/v7-blue?style=flat-square&logo=docker)
+![](https://img.shields.io/badge/linux-arm64/v8-blue?style=flat-square&logo=docker)
+![](https://img.shields.io/badge/linux-ppc64le-blue?style=flat-square&logo=docker)
+![](https://img.shields.io/badge/linux-s390x-blue?style=flat-square&logo=docker)
 
 - GET / POST / PUT / PATCH / DELETE
 - Request (Query, Body, IPs, Host, Urls...)
@@ -18,15 +26,7 @@ Available:
 - Environment variables
 - Control via Headers/Query
 - Folders and Files
-
-Docker OS/ARCH :
-
-- linux/amd64
-- linux/arm/v6
-- linux/arm/v7
-- linux/arm64/v8
-- linux/ppc64le
-- linux/s390x
+- Monitoring
 
 ![docker](https://ealenn.github.io/Echo-Server/assets/images/docker.png)
 
@@ -52,13 +52,13 @@ Docker OS/ARCH :
 	* [Docker-Compose](#Docker-Compose)
 	* [Kubernetes](#Kubernetes)
 	* [Kubernetes with Helm](#KuberneteswithHelm)
+	* [NodeJS](#NodeJS)
 * [Contributing](#Contributing)
 * [Versioning](#Versioning)
 * [License](#License)
-* [Local development](#Localdevelopment)
-	* [Run Echo-Server](#RunEcho-Server)
-	* [Run documentation server](#Rundocumentationserver)
-	* [Run tests](#Runtests)
+* [Development](#Development)
+	* [Documentation](#Documentation)
+	* [Tests](#Tests)
 	* [Release notes](#Releasenotes)
 	* [Update Helm Chart](#UpdateHelmChart)
 
@@ -101,18 +101,16 @@ I use [jq](https://stedolan.github.io/jq) for nice `curl` results ;)
 
 #### <a name='CustomHTTPStatusCode'></a>Custom HTTP Status Code
 
-ECHO_HOST = `localhost:3000` or `echoserver.cluster.local` for Kubernetes by default.
-
 ```bash
-➜ curl -I --header 'X-ECHO-CODE: 404' $ECHO_HOST
-➜ curl $ECHO_HOST/?echo_code=404
+➜ curl -I --header 'X-ECHO-CODE: 404' localhost:8080
+➜ curl -I localhost:8080/?echo_code=404
 
 HTTP/1.1 404 Not Found
 ```
 
 ```bash
-➜ curl -I --header 'X-ECHO-CODE: 404-300' $ECHO_HOST
-➜ curl $ECHO_HOST/?echo_code=404-300
+➜ curl -I --header 'X-ECHO-CODE: 404-300' localhost:8080
+➜ curl -I localhost:8080/?echo_code=404-300
 
 HTTP/1.1 404 Not Found
 HTTP/1.1 300 Multiple Choices
@@ -121,7 +119,7 @@ HTTP/1.1 300 Multiple Choices
 ```bash
 ➜ for i in {1..10}
 ➜ do
-➜    curl -I $ECHO_HOST/?echo_code=200-400-500
+➜    curl -I localhost:8080/?echo_code=200-400-500
 ➜ done
 
 HTTP/1.1 500 Internal Server Error
@@ -135,8 +133,8 @@ HTTP/1.1 500 Internal Server Error
 #### <a name='CustomBody'></a>Custom Body
 
 ```bash
-➜ curl --header 'X-ECHO-BODY: amazing' $ECHO_HOST
-➜ curl $ECHO_HOST/?echo_body=amazing
+➜ curl --header 'X-ECHO-BODY: amazing' localhost:8080
+➜ curl localhost:8080/?echo_body=amazing
 
 "amazing"
 ```
@@ -144,8 +142,8 @@ HTTP/1.1 500 Internal Server Error
 #### <a name='CustomBodywithEnvironmentvariablevalue'></a>Custom Body with Environment variable value
 
 ```bash
-➜ curl --header 'X-ECHO-ENV-BODY: HOSTNAME' $ECHO_HOST
-➜ curl $ECHO_HOST/?echo_env_body=HOSTNAME
+➜ curl --header 'X-ECHO-ENV-BODY: HOSTNAME' localhost:8080
+➜ curl localhost:8080/?echo_env_body=HOSTNAME
 
 "c53a9ed79fa2"
 ```
@@ -153,7 +151,7 @@ HTTP/1.1 500 Internal Server Error
 ```bash
 ➜ for i in {1..10}
 ➜ do
-➜    curl $ECHO_HOST/?echo_env_body=HOSTNAME
+➜    curl localhost:8080/?echo_env_body=HOSTNAME
 ➜ done
 
 "c53a9ed79fa2"
@@ -166,16 +164,16 @@ HTTP/1.1 500 Internal Server Error
 #### <a name='CustomHeaders'></a>Custom Headers
 
 ```bash
-➜ curl --header 'X-ECHO-HEADER: One:1' $ECHO_HOST
-➜ curl $ECHO_HOST/?echo_header=One:1
+➜ curl --header 'X-ECHO-HEADER: One:1' localhost:8080
+➜ curl localhost:8080/?echo_header=One:1
 
 HTTP/1.1 200 OK
 One: 1
 ```
 
 ```bash
-➜ curl --header 'X-ECHO-HEADER: One:1, Two:2' $ECHO_HOST
-➜ curl "$ECHO_HOST/?echo_header=One:1,%20Two:2"
+➜ curl --header 'X-ECHO-HEADER: One:1, Two:2' localhost:8080
+➜ curl "localhost:8080/?echo_header=One:1,%20Two:2"
 
 HTTP/1.1 200 OK
 One: 1
@@ -185,8 +183,8 @@ Two: 2
 #### <a name='Customresponselatency'></a>Custom response latency
 
 ```bash
-➜ curl --header 'X-ECHO-TIME: 5000' $ECHO_HOST
-➜ curl "$ECHO_HOST/?echo_time=5000"
+➜ curl --header 'X-ECHO-TIME: 5000' localhost:8080
+➜ curl "localhost:8080/?echo_time=5000"
 
 ⏳... 5000 ms
 ```
@@ -203,8 +201,8 @@ You can change default validations with
 #### <a name='FileFolderexplorer'></a>File/Folder explorer
 
 ```bash
-➜ curl --header 'X-ECHO-FILE: /' $ECHO_HOST
-➜ curl "$ECHO_HOST/?echo_file=/"
+➜ curl --header 'X-ECHO-FILE: /' localhost:8080
+➜ curl "localhost:8080/?echo_file=/"
 
 ["app", "bin", "etc", "usr", "var"]
 ```
@@ -212,14 +210,16 @@ You can change default validations with
 #### <a name='Combinecustomactions'></a>Combine custom actions
 
 ```bash
-➜ curl --header 'X-ECHO-CODE: 401' --header 'X-ECHO-BODY: Oups' $ECHO_HOST
-➜ curl "$ECHO_HOST/?echo_body=Oups&echo_code=401"
+➜ curl --header 'X-ECHO-CODE: 401' --header 'X-ECHO-BODY: Oups' localhost:8080
+➜ curl "localhost:8080/?echo_body=Oups&echo_code=401"
 
 HTTP/1.1 401 Unauthorized
 "Oups"
 ```
 
 ## <a name='ChangedefaultQueriesRequestcommands'></a>Change default Queries/Request commands
+
+[Read the docs](https://ealenn.github.io/Echo-Server/pages/configuration/commands.html)
 
 | Environment                        | CLI                                | Default            |
 |------------------------------------|------------------------------------|--------------------|
@@ -237,6 +237,8 @@ HTTP/1.1 401 Unauthorized
 | COMMANDS__FILE__HEADER             | --commands:file:header             | `x-echo-file`      |
 
 ## <a name='Loggers'></a>Loggers
+
+[Read the docs](https://ealenn.github.io/Echo-Server/pages/configuration/loggers.html)
 
 | Environment                        | CLI                                | Default            |
 |------------------------------------|------------------------------------|--------------------|
@@ -258,42 +260,44 @@ HTTP/1.1 401 Unauthorized
 
 ### <a name='Docker'></a>Docker
 
-[Read the docs](https://ealenn.github.io/Echo-Server/pages/docker.html)
+[Read the docs](https://ealenn.github.io/Echo-Server/pages/quick-start/docker.html)
 
 ```bash
-docker run -p 3000:80 ealen/echo-server
+docker run -p 8080:80 ealen/echo-server
 ```
 
 ### <a name='Docker-Compose'></a>Docker-Compose
 
-[Read the docs](https://ealenn.github.io/Echo-Server/pages/docker-compose.html)
+[Read the docs](https://ealenn.github.io/Echo-Server/pages/quick-start/docker-compose.html)
+
+**Sample**
 
 ```yaml
-version: '3'
+version: "3"
 services:
   echo-server:
-    image: ealen/echo-server:latest
-    environment:
-      - ENABLE__ENVIRONMENT=false
+    image: ealen/echo-server
     ports:
-      - 3000:80
+      - 8080:80
 ```
+
+**With Seq**
 
 ```yaml
 version: "3"
 
 services:
   echo:
-    image: ealen/echo-server:latest
+    image: ealen/echo-server
     environment: 
       PORT: 80
       LOGS__SEQ__ENABLED: "true"
       LOGS__SEQ__SERVER: "http://seq:5341"
     ports: 
-      - 3000:80
+      - 8080:80
 
   seq:
-    image: datalust/seq:latest
+    image: datalust/seq
     environment: 
       ACCEPT_EULA: "Y"
     ports:
@@ -302,7 +306,7 @@ services:
 
 ### <a name='Kubernetes'></a>Kubernetes
 
-[Read the docs](https://ealenn.github.io/Echo-Server/pages/kubernetes.html)
+[Read the docs](https://ealenn.github.io/Echo-Server/pages/quick-start/kubernetes.html)
 
 ```bash
 curl -sL https://raw.githubusercontent.com/Ealenn/Echo-Server/master/docs/examples/echo.kube.yaml | kubectl apply -f -
@@ -310,12 +314,22 @@ curl -sL https://raw.githubusercontent.com/Ealenn/Echo-Server/master/docs/exampl
 
 ### <a name='KuberneteswithHelm'></a>Kubernetes with Helm
 
-[Read the docs](https://ealenn.github.io/Echo-Server/pages/helm.html) - [Helm Hub](https://hub.helm.sh/charts/ealenn/echo-server)
+[Read the docs](https://ealenn.github.io/Echo-Server/pages/quick-start/helm.html) - [Helm Hub](https://hub.helm.sh/charts/ealenn/echo-server)
 
 ```bash
 helm repo add ealenn https://ealenn.github.io/charts
 helm repo update
 helm install --set ingress.enable=true --name echoserver ealenn/echo-server
+```
+
+### <a name='NodeJS'></a>NodeJS
+
+[Read the docs](https://ealenn.github.io/Echo-Server/pages/quick-start/nodejs)
+
+```bash
+node ./src/webserver --port 8080
+# OR
+PORT=8080 npm run start
 ```
 
 ---
@@ -331,29 +345,23 @@ For the versions available, see the [tags on this repository](https://github.com
 
 ## <a name='License'></a>License
 
-This project is licensed under the GNU Lesser General Public License - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the GNU Lesser General Public License - see the [LICENSE.txt](https://github.com/Ealenn/Echo-Server/blob/master/LICENSE.txt) file for details.
 
 ---
 
-## <a name='Localdevelopment'></a>Local development
+## <a name='Development'></a>Development
 
-### <a name='RunEcho-Server'></a>Run Echo-Server
+### <a name='Documentation'></a>Documentation
 
-```bash
-npm install
-node ./src/webserver --port 3000
-# OR
-PORT=3000 npm run start
-```
-
-### <a name='Rundocumentationserver'></a>Run documentation server
+Docker-Compose is available on `./docs` folder.
 
 ```bash
-cd ./docs
-docker compose up
+docker compose up -d
 ```
 
-### <a name='Runtests'></a>Run tests
+The documentation is here [localhost:4000](http://localhost:4000)
+
+### <a name='Tests'></a>Tests
 
 ```bash
 npm install
