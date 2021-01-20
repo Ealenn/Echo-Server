@@ -16,7 +16,7 @@ nav_exclude: true
 | ?echo_time=         | X-ECHO-TIME           | Wait time in `ms`                | 0 <= `TIME` <= 60.000     |
 | ?echo_file=         | X-ECHO-FILE           | Path of Directory or File        | Enable file `true`        |
 
-You can change [commands](/pages/configuration/commands) and [conditions](/pages/configuration/configuration).
+You can change [commands](https://ealenn.github.io/Echo-Server/pages/configuration/commands) and [conditions](https://ealenn.github.io/Echo-Server/pages/configuration/configuration).
 
 #### Custom HTTP Status Code
 {: .no_toc }

@@ -40,7 +40,7 @@ And install dependencies
 
 ## Configuration
 
-You can use environment variables or CLI arguments [More information](/pages/configuration)
+You can use environment variables or CLI arguments [More information](https://ealenn.github.io/Echo-Server/pages/configuration)
 
 - **With environment variables:**
 
@@ -56,7 +56,7 @@ You can use environment variables or CLI arguments [More information](/pages/con
 
 ## Loggers
 
-[More information](/pages/configuration/loggers)
+[More information](https://ealenn.github.io/Echo-Server/pages/configuration/loggers)
 
 ```sh
 ➜ node ./src/webserver \

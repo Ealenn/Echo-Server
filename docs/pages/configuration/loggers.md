@@ -26,7 +26,7 @@ nav_order: 2
 
 ## Seq
 
-![seq](/assets/images/seq.png)
+![seq](https://ealenn.github.io/Echo-Server/assets/images/seq.png)
 
 | Environment                        | CLI                                | Default            |
 |------------------------------------|------------------------------------|--------------------|
