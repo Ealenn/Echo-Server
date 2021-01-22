@@ -1,0 +1,27 @@
+version: "3"
+services:
+  # ----------------------------------
+  # ECHO-SERVER
+  # ----------------------------------
+  echo:
+    build:
+      context: ../../
+      dockerfile: ../Dockerfile.local
+    restart: unless-stopped
+    environment:
+      PORT: 80
+      LOGS__SEQ__ENABLED: "true"
+      LOGS__SEQ__SERVER: "http://seq:5341"
+    ports:
+      - 3000:80
+
+  # ----------------------------------
+  # SEQ
+  # ----------------------------------
+  seq:
+    image: datalust/seq:latest
+    restart: unless-stopped
+    environment:
+      ACCEPT_EULA: "Y"
+    ports:
+      - 3010:80
