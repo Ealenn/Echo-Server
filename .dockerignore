@@ -1,11 +1,9 @@
 # Github
 .github
 .gitignore
-docs 
+docs
 *.md
-Dockerfile
-Dockerfile.local
-docker-compose.yml
+docker-compose/*
 
 # Logs
 logs

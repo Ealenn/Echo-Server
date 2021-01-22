@@ -1,0 +1,48 @@
+version: "3"
+services:
+  # ----------------------------------
+  # ECHO-SERVER
+  # ----------------------------------
+  echo:
+    build:
+      context: ../../
+      dockerfile: docker-compose/Dockerfile.local
+    restart: unless-stopped
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "tcp://localhost:8089"
+    environment:
+      - "LOGS__FORMAT=object"
+    depends_on:
+      - logstash
+    ports:
+      - 3000:80
+
+  # ----------------------------------
+  # ELK
+  # ----------------------------------
+  elasticsearch:
+    image: elasticsearch:7.7.0
+    hostname: elasticsearch
+    restart: unless-stopped
+    environment:
+      - "discovery.type=single-node"
+  kibana:
+    image: kibana:7.7.0
+    hostname: kibana
+    restart: unless-stopped
+    depends_on:
+      - elasticsearch
+    ports:
+      - 3010:5601
+  logstash:
+    image: logstash:7.7.0
+    hostname: logstash
+    restart: unless-stopped
+    volumes:
+      - ./logstash:/usr/share/logstash/pipeline/
+    depends_on:
+      - elasticsearch
+    ports:
+      - 8089:8089

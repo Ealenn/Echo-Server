@@ -46,7 +46,9 @@ Available:
 		* [Combine custom actions](#Combinecustomactions)
 * [Change default Queries/Request commands](#ChangedefaultQueriesRequestcommands)
 * [Loggers](#Loggers)
+	* [Format](#Format)
 	* [Seq](#Seq)
+	* [ELK](#ELK)
 * [Setting up](#Settingup)
 	* [Docker](#Docker)
 	* [Docker-Compose](#Docker-Compose)
@@ -243,11 +245,20 @@ HTTP/1.1 401 Unauthorized
 | Environment                        | CLI                                | Default            |
 |------------------------------------|------------------------------------|--------------------|
 | LOGS__APP                          | --logs:app                         | `echo-server`      |
-| LOGS__LEVEL                        | --logs:level                       | `debug`          |
+| LOGS__LEVEL                        | --logs:level                       | `debug`            |
+| LOGS__FORMAT                       | --logs:format                      | `default`          |
+
+### <a name='Format'></a>Format
+
+| LOG FORMAT        | DESCRIPTION                                                                 |
+|-------------------|-----------------------------------------------------------------------------|
+| default           | Combine `line` & `object`                                                   |
+| line              | Simple `Fri, 22 Jan 2021 10:45:20 GMT | [GET] - http://localhost:8080/path` |
+| object            | JSON `{ "host": {}, http: {}, request: {}}`                                 |
 
 ### <a name='Seq'></a>Seq
 
-![seq](https://ealenn.github.io/Echo-Server/assets/images/seq.png)
+[Full example](https://github.com/Ealenn/Echo-Server/tree/master/docker-compose) - [Documentation](https://ealenn.github.io/Echo-Server/pages/quick-start/docker-compose.html)
 
 | Environment                        | CLI                                | Default            |
 |------------------------------------|------------------------------------|--------------------|
@@ -255,6 +266,10 @@ HTTP/1.1 401 Unauthorized
 | LOGS__SEQ__SERVER                  | --logs:seq:server                  | ` `                |
 | LOGS__SEQ__KEY                     | --logs:seq:key                     | ` `                |
 | LOGS__SEQ__LEVEL                   | --logs:seq:level                   | `info`             |
+
+### <a name='ELK'></a>ELK
+
+[Full example](https://github.com/Ealenn/Echo-Server/tree/master/docker-compose) - [Documentation](https://ealenn.github.io/Echo-Server/pages/quick-start/docker-compose.html)
 
 ## <a name='Settingup'></a>Setting up
 
@@ -285,7 +300,6 @@ services:
 
 ```yaml
 version: "3"
-
 services:
   echo:
     image: ealen/echo-server

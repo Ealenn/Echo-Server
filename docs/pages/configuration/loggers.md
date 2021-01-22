@@ -23,6 +23,15 @@ nav_order: 2
 | LOGS__IGNORE__PING                 | --logs:ignore:ping                 | `false`            |
 | LOGS__APP                          | --logs:app                         | `echo-server`      |
 | LOGS__LEVEL                        | --logs:level                       | `debug`            |
+| LOGS__FORMAT                       | --logs:format                      | `default`          |
+
+### Format
+
+| LOG FORMAT        | DESCRIPTION                                                                 |
+|-------------------|-----------------------------------------------------------------------------|
+| default           | Combine `line` and `object`                                                 |
+| line              | Simple `Fri, 22 Jan 2021 10:45:20 GMT | [GET] - http://localhost:8080/path` |
+| object            | JSON `{ "host": {}, http: {}, request: {}}`                                 |
 
 ## Seq
 

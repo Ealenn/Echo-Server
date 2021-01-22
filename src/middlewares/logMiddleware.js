@@ -25,12 +25,28 @@ const log = bunyan.createLogger({
 
 module.exports = (req, res, next) => {
   if (req.originalUrl != "/ping" || !config.get('logs:ignore:ping')) {
-    log.info({
-      host: require('../response/host')(req),
-      http: require('../response/http')(req),
-      request: require('../response/request')(req),
-      environment: require('../response/environment')(req)
-    }, `${new Date().toUTCString()} | [${req.method}] - ${req.protocol}://${req.get('host')}${req.originalUrl}`);
+    switch (config.get('logs:format'))
+    {
+      case "line":
+        log.info(`${new Date().toUTCString()} | [${req.method}] - ${req.protocol}://${req.get('host')}${req.originalUrl}`);
+        break;
+      case "object":
+        log.info({
+          host: require('../response/host')(req),
+          http: require('../response/http')(req),
+          request: require('../response/request')(req),
+          environment: require('../response/environment')(req)
+        });
+        break;
+      default:
+        log.info({
+          host: require('../response/host')(req),
+          http: require('../response/http')(req),
+          request: require('../response/request')(req),
+          environment: require('../response/environment')(req)
+        }, `${new Date().toUTCString()} | [${req.method}] - ${req.protocol}://${req.get('host')}${req.originalUrl}`);
+        break;
+    }
   }
   next();
 }

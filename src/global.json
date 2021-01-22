@@ -3,6 +3,7 @@
     "logs": {
         "app": "echo-server",
         "level": "debug",
+        "format": "default",
         "ignore": {
             "ping": false
         },
