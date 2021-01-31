@@ -1,0 +1,21 @@
+name: GH-Page
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger GitHub pages rebuild
+        run: |
+          echo "Repository: $REPOSITORY"
+          curl --fail --request POST \
+            --url https://api.github.com/repos/${{ github.repository }}/pages/builds \
+            -u $GH_USER:$GH_TOKEN
+        env:
+          REPOSITORY: ${{ github.repository }}
+          GH_USER: Ealenn
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
