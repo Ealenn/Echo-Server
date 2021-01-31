@@ -1,9 +1,6 @@
 name: GH-Page
 
 on:
-  pull_request:
-    branches:
-      - '*'
   push:
     tags:
       - '*'
