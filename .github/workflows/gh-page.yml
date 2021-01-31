@@ -2,7 +2,7 @@ name: GH-Page
 
 on:
   pull_request:
-    branches: 
+    branches:
       - '*'
   push:
     tags:
@@ -14,8 +14,11 @@ jobs:
     steps:
       - name: Trigger GitHub pages rebuild
         run: |
+          echo "Repository: $REPOSITORY"
           curl --fail --request POST \
             --url https://api.github.com/repos/${{ github.repository }}/pages/builds \
-            --header "Authorization: Bearer $USER_TOKEN"
+            -u $GH_USER:$GH_TOKEN
         env:
-          USER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPOSITORY: ${{ github.repository }}
+          GH_USER: Ealenn
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
