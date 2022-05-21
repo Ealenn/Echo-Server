@@ -329,7 +329,7 @@ curl -sL https://raw.githubusercontent.com/Ealenn/Echo-Server/master/docs/exampl
 
 ### <a name='KuberneteswithHelm'></a>Kubernetes with Helm
 
-[Read the docs](https://ealenn.github.io/Echo-Server/pages/quick-start/helm.html) - [Helm Hub](https://hub.helm.sh/charts/ealenn/echo-server)
+[Read the docs](https://ealenn.github.io/Echo-Server/pages/quick-start/helm.html) - [Artifact Hub](https://artifacthub.io/packages/helm/ealenn/echo-server)
 
 ```bash
 helm repo add ealenn https://ealenn.github.io/charts
