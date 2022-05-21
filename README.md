@@ -33,36 +33,37 @@ Available:
 ## <a name='Tableofcontents'></a>Table of contents
 
 <!-- vscode-markdown-toc -->
-* [Table of contents](#Tableofcontents)
-* [Configuration](#Configuration)
-* [Use Echo-Server](#UseEcho-Server)
-	* [Custom responses](#Customresponses)
-		* [Custom HTTP Status Code](#CustomHTTPStatusCode)
-		* [Custom Body](#CustomBody)
-		* [Custom Body with Environment variable value](#CustomBodywithEnvironmentvariablevalue)
-		* [Custom Headers](#CustomHeaders)
-		* [Custom response latency](#Customresponselatency)
-		* [File/Folder explorer](#FileFolderexplorer)
-		* [Combine custom actions](#Combinecustomactions)
-* [Change default Queries/Request commands](#ChangedefaultQueriesRequestcommands)
-* [Loggers](#Loggers)
-	* [Format](#Format)
-	* [Seq](#Seq)
-	* [ELK](#ELK)
-* [Setting up](#Settingup)
-	* [Docker](#Docker)
-	* [Docker-Compose](#Docker-Compose)
-	* [Kubernetes](#Kubernetes)
-	* [Kubernetes with Helm](#KuberneteswithHelm)
-	* [NodeJS](#NodeJS)
-* [Contributing](#Contributing)
-* [Versioning](#Versioning)
-* [License](#License)
-* [Development](#Development)
-	* [Documentation](#Documentation)
-	* [Tests](#Tests)
-	* [Release notes](#Releasenotes)
-	* [Update Helm Chart](#UpdateHelmChart)
+- [Echo-Server / Docker / Kubernetes / Helm](#echo-server--docker--kubernetes--helm)
+	- [<a name='Tableofcontents'></a>Table of contents](#table-of-contents)
+	- [<a name='Configuration'></a>Configuration](#configuration)
+	- [<a name='UseEcho-Server'></a>Use Echo-Server](#use-echo-server)
+		- [<a name='Customresponses'></a>Custom responses](#custom-responses)
+			- [<a name='CustomHTTPStatusCode'></a>Custom HTTP Status Code](#custom-http-status-code)
+			- [<a name='CustomBody'></a>Custom Body](#custom-body)
+			- [<a name='CustomBodywithEnvironmentvariablevalue'></a>Custom Body with Environment variable value](#custom-body-with-environment-variable-value)
+			- [<a name='CustomHeaders'></a>Custom Headers](#custom-headers)
+			- [<a name='Customresponselatency'></a>Custom response latency](#custom-response-latency)
+			- [<a name='FileFolderexplorer'></a>File/Folder explorer](#filefolder-explorer)
+			- [<a name='Combinecustomactions'></a>Combine custom actions](#combine-custom-actions)
+	- [<a name='ChangedefaultQueriesRequestcommands'></a>Change default Queries/Request commands](#change-default-queriesrequest-commands)
+	- [<a name='Loggers'></a>Loggers](#loggers)
+		- [<a name='Format'></a>Format](#format)
+		- [<a name='Seq'></a>Seq](#seq)
+		- [<a name='ELK'></a>ELK](#elk)
+	- [<a name='Settingup'></a>Setting up](#setting-up)
+		- [<a name='Docker'></a>Docker](#docker)
+		- [<a name='Docker-Compose'></a>Docker-Compose](#docker-compose)
+		- [<a name='Kubernetes'></a>Kubernetes](#kubernetes)
+		- [<a name='KuberneteswithHelm'></a>Kubernetes with Helm](#kubernetes-with-helm)
+		- [<a name='NodeJS'></a>NodeJS](#nodejs)
+	- [<a name='Contributing'></a>Contributing](#contributing)
+	- [<a name='Versioning'></a>Versioning](#versioning)
+	- [<a name='License'></a>License](#license)
+	- [<a name='Development'></a>Development](#development)
+		- [<a name='Documentation'></a>Documentation](#documentation)
+		- [<a name='Tests'></a>Tests](#tests)
+		- [<a name='Releasenotes'></a>Release notes](#release-notes)
+		- [<a name='UpdateHelmChart'></a>Update Helm Chart](#update-helm-chart)
 
 <!-- vscode-markdown-toc-config
 	numbering=false
@@ -342,7 +343,7 @@ helm install --set ingress.enable=true --name echoserver ealenn/echo-server
 
 ```bash
 # Dependencies
-npm install
+npm ci
 # Run with node
 node ./src/webserver --port 8080
 # Run with npm script
@@ -381,7 +382,7 @@ The documentation is here [localhost:4000](http://localhost:4000)
 ### <a name='Tests'></a>Tests
 
 ```bash
-npm install
+npm ci
 # Without code coverage
 npm run test
 # With code coverage
