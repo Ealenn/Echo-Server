@@ -19,8 +19,8 @@ aux_links:
     - "//github.com/Ealenn/Echo-Server"
   "DockerHub":
     - "//hub.docker.com/repository/docker/ealen/echo-server"
-  "Helm Hub":
-    - "//hub.helm.sh/charts/ealenn/echo-server"
+  "Artifact Hub":
+    - "//artifacthub.io/packages/helm/ealenn/echo-server"
 
 plugins:
   - jekyll-github-metadata
