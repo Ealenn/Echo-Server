@@ -11,6 +11,7 @@ module.exports = (req) => {
               headers: req.headers
           }
       } else {
+          delete req.headers["cookie"];
           return {
               params: req.params,
               query: req.query,
