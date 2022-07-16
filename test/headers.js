@@ -11,6 +11,15 @@ describe('Headers', function () {
   afterEach(function () {
     server.close();
   });
+  it('GET (cookie)', function test(done) {
+    request(server)
+      .get('/')
+      .set('cookie', 'key=value')
+      .expect(function (res) {
+        assert.strictEqual(res.body.request.headers['cookie'], 'key=value')
+      })
+      .expect(200, done);
+  });
   it('GET', function test(done) {
     request(server)
       .get('/')
@@ -53,6 +62,27 @@ describe('Headers', function () {
       .set('test', 'ok')
       .expect(function (res) {
         assert.strictEqual(res.body.request.headers['test'], 'ok')
+      })
+      .expect(200, done);
+  });
+});
+
+describe('Headers', function () {
+  var server;
+  beforeEach(function () {
+    require('../src/nconf').set('enable:cookies', false);
+    server = require('../src/app');
+  });
+  afterEach(function () {
+    require('../src/nconf').set('enable:cookies', true);
+    server.close();
+  });
+  it('GET', function test(done) {
+    request(server)
+      .get('/')
+      .set('cookie', 'key=value')
+      .expect(function (res) {
+        assert.deepEqual(res.body.request.headers['cookie'], undefined)
       })
       .expect(200, done);
   });
