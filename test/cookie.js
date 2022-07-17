@@ -67,3 +67,26 @@ describe('Request with Cookies', function () {
       .expect(200, done);
   });
 });
+
+describe('Request with Cookies but disabled in configuration', function () {
+  var server;
+  beforeEach(function () {
+    require('../src/nconf').set('enable:cookies', false);
+    server = require('../src/app');
+  });
+  afterEach(function () {
+    require('../src/nconf').set('enable:cookies', true);
+    server.close();
+  });
+
+  it('GET', function test(done) {
+    request(server)
+      .get('/')
+      .set('Cookie', ['testOne=valueOne;testTwo=valueTwo'])
+      .send()
+      .expect(function (res) {
+        assert.deepEqual(res.body.request.cookies, []);
+      })
+      .expect(200, done);
+  });
+});

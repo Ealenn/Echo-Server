@@ -18,6 +18,7 @@
         "host": true,
         "http": true,
         "request": true,
+        "cookies": true,
         "environment": true,
         "file": true,
         "header": true
