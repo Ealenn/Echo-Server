@@ -1,10 +1,9 @@
 name: GH-Page
 
-on: [push]
-# on:
-#  push:
-#    tags:
-#      - '*'
+on:
+  push:
+    tags:
+      - '*'
 
 jobs:
   refresh:
