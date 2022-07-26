@@ -4,6 +4,14 @@ const http = require('http')
   , server = http.createServer(app)
   , bodyParser = require('body-parser');
 
+// Signal handling
+process.on('SIGTERM', () => {
+  console.log('Received SIGTERM signal. Gracefully stopping web server.');
+  server.close(() => {
+    console.log('Server stopped sucessfully.');
+  });
+});
+
 // Configuration
 app.disable('x-powered-by');
 
