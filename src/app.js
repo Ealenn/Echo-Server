@@ -6,9 +6,9 @@ const http = require('http')
 
 // Signal handling
 process.on('SIGTERM', () => {
-  console.log('Received SIGTERM signal. Gracefully stopping web server.');
+  console.debug('Received SIGTERM signal. Gracefully stopping web server.');
   server.close(() => {
-    console.log('Server stopped sucessfully.');
+    console.debug('Server stopped sucessfully.');
   });
 });
 
@@ -35,9 +35,9 @@ app.use(require('./middlewares/customHttpBodyMiddleware'));
 
 // Router
 app.all('*', (req, res) => res.json({
-    host: require('./response/host')(req),
-    http: require('./response/http')(req),
-    request: require('./response/request')(req),
-    environment: require('./response/environment')(req)
+  host: require('./response/host')(req),
+  http: require('./response/http')(req),
+  request: require('./response/request')(req),
+  environment: require('./response/environment')(req)
 }));
 module.exports = server
