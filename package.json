@@ -32,20 +32,20 @@
   },
   "homepage": "https://github.com/Ealenn/Echo-Server#readme",
   "dependencies": {
-    "body-parser": "^1.x.x",
-    "bunyan": "^1.x.x",
-    "bunyan-seq": "^0.x.x",
-    "cookie-parser": "^1.x.x",
-    "express": "^4.x.x",
-    "multer": "^1.x.x",
+    "body-parser": "^1.x",
+    "bunyan": "^1.x",
+    "bunyan-seq": "^0.x",
+    "cookie-parser": "^1.x",
+    "express": "^4.x",
+    "multer": "1.4.5-lts.1",
     "nconf": "^0.12.x"
   },
   "devDependencies": {
-    "mocha": "^10.x.x",
-    "nyc": "^15.x.x",
-    "supertest": "^6.x.x",
-    "terser-webpack-plugin": "^5.x.x",
-    "webpack": "^5.x.x",
-    "webpack-cli": "^4.x.x"
+    "mocha": "^10.x",
+    "nyc": "^15.x",
+    "supertest": "^6.x",
+    "terser-webpack-plugin": "^5.x",
+    "webpack": "^5.x",
+    "webpack-cli": "^4.x"
   }
 }
