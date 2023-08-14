@@ -8,7 +8,7 @@ const http = require('http')
 process.on('SIGTERM', () => {
   console.debug('Received SIGTERM signal. Gracefully stopping web server.');
   server.close(() => {
-    console.debug('Server stopped sucessfully.');
+    console.debug('Server stopped successfully.');
   });
 });
 
