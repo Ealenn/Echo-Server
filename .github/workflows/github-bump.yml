@@ -1,0 +1,24 @@
+name: Bump
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Bump version and push tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.0
+        with:
+          github_token: ${{ secrets.PAT }}
+          tag_prefix: ''
+      - name: Create a GitHub release
+        uses: ncipollo/release-action@v1
+        with:
+          token: ${{ secrets.PAT }}
+          tag: ${{ steps.tag_version.outputs.new_tag }}
+          name: ${{ steps.tag_version.outputs.new_tag }}
+          body: ${{ steps.tag_version.outputs.changelog }}
