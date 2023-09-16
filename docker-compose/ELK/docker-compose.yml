@@ -29,7 +29,7 @@ services:
     environment:
       - "discovery.type=single-node"
   kibana:
-    image: kibana:7.17.13
+    image: kibana:8.9.2
     hostname: kibana
     restart: unless-stopped
     depends_on:
