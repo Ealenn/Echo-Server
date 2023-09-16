@@ -23,7 +23,7 @@ services:
   # ELK
   # ----------------------------------
   elasticsearch:
-    image: elasticsearch:7.7.0
+    image: elasticsearch:7.17.13
     hostname: elasticsearch
     restart: unless-stopped
     environment:
