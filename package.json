@@ -46,6 +46,6 @@
     "supertest": "^6.x",
     "terser-webpack-plugin": "^5.x",
     "webpack": "^5.x",
-    "webpack-cli": "^4.x"
+    "webpack-cli": "^5.0.0"
   }
 }
