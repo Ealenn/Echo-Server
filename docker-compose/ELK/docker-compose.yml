@@ -23,7 +23,7 @@ services:
   # ELK
   # ----------------------------------
   elasticsearch:
-    image: elasticsearch:8.9.2
+    image: elasticsearch:8.10.2
     hostname: elasticsearch
     restart: unless-stopped
     environment:
