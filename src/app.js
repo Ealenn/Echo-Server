@@ -18,7 +18,7 @@ app.disable('x-powered-by');
 // Parser
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
-app.use(bodyParser.json());
+app.use(bodyParser.json({type: ['json', 'jsonld']}));
 app.use(require('cookie-parser')());
 app.use(require('multer')().array());
 
