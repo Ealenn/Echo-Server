@@ -37,7 +37,7 @@ services:
     ports:
       - 3010:5601
   logstash:
-    image: logstash:8.10.2
+    image: logstash:8.12.0
     hostname: logstash
     restart: unless-stopped
     volumes:
