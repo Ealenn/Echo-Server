@@ -6,9 +6,9 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-FROM node:lts-alpine
+FROM gcr.io/distroless/nodejs22-debian12:nonroot
 WORKDIR /app
 COPY --from=build /build/src/global.json .
 COPY --from=build /build/dist/webserver.js .
 
-ENTRYPOINT [ "node", "webserver" ]
+CMD [ "/app/webserver.js" ]
