@@ -2,18 +2,27 @@ const config = require('../nconf');
 
 const setupHttpHeaders = (value, res) => {
   if (value) {
-    var elements = value.split(', ');
+    // Split by ";" instead of "," to allow commas inside header values
+    // Adding trim to avoid spaces and make code resilient
+    const elements = value.split(';');
     elements.forEach(customHeader => {
-      var array = customHeader.split(':');
-      // Using append for multiple headers with same key like set-cookie header
-      // Adding trim to avoid spaces and make code resilient
-      res.append(array[0].trim(), array.slice(1).join(':').trim());
+      // Skip empty headers
+      if (!customHeader.trim()) return; 
+
+      const array = customHeader.split(':');
+      const key = array[0].trim();
+      const val = array.slice(1).join(':').trim();
+
+      if (key) {
+        // append preserves duplicates (e.g. multiple Set-Cookie headers)
+        res.append(key, val); 
+      }
     });
   }
-}
+};
 
 module.exports = (req, res, next) => {
-  if (config.get('enable:header')) { 
+  if (config.get('enable:header')) {
     try {
       setupHttpHeaders(req.headers[config.get('commands:httpHeaders:header')], res);
       setupHttpHeaders(req.query[config.get('commands:httpHeaders:query')], res);
@@ -23,4 +32,4 @@ module.exports = (req, res, next) => {
   } else {
     next();
   }
-}
+};
