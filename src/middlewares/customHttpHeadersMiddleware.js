@@ -5,7 +5,9 @@ const setupHttpHeaders = (value, res) => {
     var elements = value.split(', ');
     elements.forEach(customHeader => {
       var array = customHeader.split(':');
-      res.header(array[0], array.slice(1, array.length).join(':'));
+      // Using append for multiple headers with same key like set-cookie header
+      // Adding trim to avoid spaces and make code resilient
+      res.append(array[0].trim(), array.slice(1).join(':').trim());
     });
   }
 }
