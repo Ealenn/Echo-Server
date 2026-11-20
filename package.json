@@ -43,7 +43,7 @@
   "devDependencies": {
     "mocha": "^10.x",
     "nyc": "^15.x",
-    "supertest": "^6.x",
+    "supertest": "^7.0.0",
     "terser-webpack-plugin": "^5.x",
     "webpack": "^5.x",
     "webpack-cli": "^5.x"
